@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="A minimal jQuery slideshow">
+		<title>jquery.slideshow demo</title>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
+		<script src="../slideshow.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {								
+				slideshow = new Slideshow({
+					id: 'slideshow_thumbs',
+					variableWidth: true,
+					variableHeight: true,
+					visibleSlidesCount: 4,
+					slide_margin_right: 3,	//unit is percent
+					align_buttons: function() {
+						//vertical align next/prev buttons with images in slideshow
+						var img_h = $('#slideshow_thumbs .slide img').height();
+						var btn_h = $('#slideshow_thumbs .next').outerHeight();
+						$('#slideshow_thumbs').find('.prev, .next').css('top', (img_h-btn_h)/2);
+					}					
+				});
+			});			
+		</script>
+		<style type="text/css">
+			#slideshow_thumbs {		
+				position: relative; /* needed to vertically center align slide buttons */
+			}
+			#slideshow_thumbs .wrapper {
+				width: 90%;
+				margin: 0 5%;
+			}
+			.slide img {
+				width: 100%;
+			}
+			.prev, .next {
+				cursor: pointer;
+				position: absolute;
+				top: 0;
+				width: 2.5%;
+			}
+			.next {
+				right: 0;
+			}
+			.disabled {
+				opacity: 0.3;
+				cursor: default;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">	 	
+			<h1>Responsive slideshow with multiple visible slides</h1>		
+			<div id="slideshow_thumbs" class="slideshow">
+				<img class="prev" src="img/prev2.png" />
+				<div class="wrapper">
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/1/" />
+						<p>caption for slide 1</p>
+					</div>
+					<div class="slide">
+						<h3>This slide has no image</h3>
+						<p>Donec et ligula mi! Fusce ac turpis vel mi ullamcorper tempor. Duis ut risus a. Duis ut risus a.ullamcorper tempor. Duis ut risus a.</p>
+						<p>Fusce ac turpis vel mi ullamcorper tempor. Duis ut risus a. Duis ut risus a.ullamcorper tempor.</p>
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/3/" />
+						<p>Donec et ligula mi! Fusce ac turpis vel mi Donec et ligula mi! Fusce ac turpis vel mi ullamcorper tempor. </p>						
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/4/" />
+						<p>Fusce ac turpis vel mi Donec et ligula mi! Fusce ac turpis vel mi ullamcorper tempor. </p>							
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/5/" />
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/6/" />
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/7/" />
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/8/" />
+					</div>
+					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/10/" />
+					</div>	
+				</div>
+				<img class="next" src="img/next2.png" />
+			</div>
+		</div>
+	</body>
+</html>

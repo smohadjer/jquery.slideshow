@@ -3,6 +3,20 @@ jquery.slideshow
 
 A responsive touch-friendly slideshow based on jQuery
 
+<h2>Examples</h2>
+<ul>
+	<li><a href="slideshow.php">Minimal(features/api)</a></li>
+	<li><a href="slideshow_minimal.php">touch, loop, and autoplay</a></li>
+	<li><a href="slideshow_tabs_number.php">auto-generated tabs (number)</a></li>
+	<li><a href="slideshow_tabs_bullet.php">auto-generated tabs (bullets)</a></li>
+	<li><a href="slideshow_tabs_text.php">labeled tabs</a></li>						
+	<li><a href="slideshow_xml_category.php">XML &amp; bookmarking</a></li>
+	<li><a href="slideshow_thumbs.php">thumbnails</a></li>
+	<li><a href="slideshow_multiple_responsive.php">multiple visible slides</a></li>
+	<li><a href="slideshow_variable_height.php">variable height</a></li>
+	<li><a href="slideshow_resizable.php">resizable fullsize</a></li>					
+</ul>
+
 <h2>Features</h2>
 <ol>
 	<li>Supports any type of content (HTML, images, videos, etc.)</li>

@@ -3,82 +3,64 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="A minimal jQuery slideshow">
-		<title>jquery.slideshow demo</title>
+		<meta name="description" content="minimal slideshow">
+		<title>Minimal Slideshow</title>
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
-		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
 		<script src="../slideshow.js"></script>
 		<script>
 			$(document).ready(function() {				
-				var slideshow1 = new Slideshow({
-					id: 'slideshow1'
+				var slideshow = new Slideshow({
+					id: 'demo'
 				});				
 			});
 		</script>		
 		<style type="text/css">	
-			#slideshow1 {
+			#demo {
 				width: 100%;
 			}
 			
 			@media screen and (min-width: 768px) {
-				#slideshow1 {
+				#demo {
 					width: 50%;
 				}
-			}
+			}				
 			
-			#slideshow1 .wrapper {
+			.slideshow .wrapper {
 				width: 100%;
 				height: 200px;
-				margin: 10px 0 20px;
 			}
-			#slideshow1 .meta {
-				text-align: right;
-			}
-			#slideshow1 .slide {
-				padding: 70px 0 80px;
+			
+			.slideshow .slide {
+				height: 200px;
 				font-size: 24px;
 				text-align: center;
-				background: #eee;
+				background: #333;
+				color: #fff;
 				margin-right: 20px;
-			}
-			.next, .prev {
-				cursor: pointer;
-				text-decoration: underline;
-			}
-			.disabled {
-				text-decoration: none;
-				cursor: default;
-				color: #999;
 			}
 		</style>
 	</head>
 	<body>
-		<div id="content">	
-			<h1>jQuery Slideshow (beta)</h1>		
-			<div id="demo">
-				<h2>Demo (minimal)</h2>
-				<div id="slideshow1" class="slideshow">
-					<div class="meta">
-						<span class="prev">Previous</span> 
-						<span class="slideNumber"></span> of <span class="slidesCount"></span> 
-						<span class="next">Next</span>
-					</div>
-					<div class="wrapper">
-						<div class="slide">					
-							<p>Slide 1</p>
-						</div>
-						<div class="slide">					
-							<p>Slide 2</p>
-						</div>
-						<div class="slide" id="slide_3">					
-							<p>Slide 3</p>
-						</div>					
-						<div class="slide">					
-							<p>Slide 4</p>
-						</div>	
-					</div>
+		<h1>Minimal Slideshow</h1>
+		<div id="demo" class="slideshow">
+			<div class="meta">
+				<button class="prev">Previous</button> 
+				Slide<span class="slideNumber"></span> of <span class="slidesCount"></span> 
+				<button class="next">Next</button>
+			</div>
+			<div class="wrapper">
+				<div class="slide">					
+					<p>Slide 1</p>
 				</div>
+				<div class="slide">					
+					<p>Slide 2</p>
+				</div>
+				<div class="slide">		
+					<p>Slide 3</p>
+				</div>					
+				<div class="slide">					
+					<p>Slide 4</p>
+				</div>	
 			</div>
 		</div>
 	</body>

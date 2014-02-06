@@ -28,7 +28,7 @@
 		displayTime          : 3000,
 		dataType			 : 'html',  //'xml', 'html'		
 		data				 : null,
-		easing				 : 'easeOutCubic', 			
+		easing				 : 'swing', 			
 		id                   : null,
 		startingSlideNumber  : 1,
 		startingSlideId		 : null,
@@ -36,7 +36,7 @@
 		slideTab_has_value	 : false,
 		transition_delay     : 500,	
 		preload_images		 : true,
-		loop				 : false,
+		loop				 : true,
 		variableHeight		 : false,
 		variableWidth		 : false,		
 		role				 : '',
@@ -144,21 +144,14 @@
 	
 	//private methods	
 	var preload_images = function() {
-		//by default init is called only after all images are loaded				
-		if (options.preload_images) {		
-			if (jQuery.fn.imagesLoaded) {
-				$(id + ' .slides').imagesLoaded(function() {
-					$(id).css({'background-image':'none'});
-					$(id).removeClass('loading');
-					init();
-				});				
-			} else {
-				alert('JQuery plugin "imagesLoaded" (jquery.imagesloaded.js) is missing!');
-			}
+		if (jQuery.fn.imagesLoaded) {
+			$(id + ' .slides').imagesLoaded(function() {
+				$(id).css({'background-image':'none'});
+				$(id).removeClass('loading');
+				init();
+			});				
 		} else {
-			$(id).css({'background-image':'none'});
-			$(id).removeClass('loading');
-			init();
+			console.log('jquery.imagesloaded.js is missing!');
 		}		
 	}
 	
@@ -568,7 +561,14 @@
 	var start = function() {
 		setup();
 		set_styles();
-		preload_images();	
+		
+		if ($slideshow.find('.slide img').length != 0 && options.preload_images) {
+			preload_images();
+		} else {
+			$(id).css({'background-image':'none'});
+			$(id).removeClass('loading');
+			init();		
+		}
 	}
 	
 	var create_slideshow_markup = function() {

@@ -5,8 +5,8 @@ A responsive touch-friendly slideshow based on jQuery
 
 <h3>Examples</h3>
 <ul>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Minimal(features/api)</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_minimal.html">touch, loop, and autoplay</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Minimal</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_images.html">with image preloading</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_number.html">auto-generated tabs (number)</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_bullet.html">auto-generated tabs (bullets)</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">labeled tabs</a></li>						
@@ -39,10 +39,10 @@ A responsive touch-friendly slideshow based on jQuery
 	<li><strong>data</strong>: null, if dataType is set to xml data should be URL to xml</li>							
 	<li><strong>dataType</strong>: "html" ["xml"]</li>							
 	<li><strong>displayTime</strong>: 3000, is used only when autoplay is set to true and indicates the amount of time a slide stays on screen</li>
-	<li><strong>easing</strong>: "easeOutCubic" ["lineaer", "easeOutQuart", "easeOutQuad", ...], using jquery.easing.1.3.js</li>
+	<li><strong>easing</strong>: "swing" ["easeOutCubic", "easeOutQuart", "easeOutQuad", ...], using jquery.easing.1.3.js</li>
 	<li><strong>id</strong>: id of slideshow container (a required parameter)</li>
 	<li><strong>loader_image</strong>: "img/loader.gif", path to image to be used as loader</li>
-	<li><strong>loop</strong>: false [true]</li>
+	<li><strong>loop</strong>: true [false]</li>
 	<li><strong>preload_images</strong>: true [false], Set this to false if you have specified a width for div.slide in CSS as then there is no need to wait for all images to load first which otherwise is required in order to calculate the width of each slide. This parameter relies on jquery.imagesloaded.js plugin which is included in slideshow.min.js.</li>
 	<li><strong>slide_is_as_wide_as_slideshow</strong>: true [false], by default slides inherit their width from their slideshow. If you want to have slides that are narrower than slideshow such as showing multiple slides simultanously then set this to false and use css to specify a width for your slides.</li>
 	<li><strong>slideTab_has_value</strong>: false [true], by default slideshow generated tabs have no value, if set to true they would have integers as value.</li>

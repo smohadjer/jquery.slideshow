@@ -252,6 +252,7 @@
 			update_width();
 			positionSlides();		
 			moveToSlide(options.loop ? slideNum : slideNum-1);
+			
 			if (options.variableHeight) {
 				setSlideHeight();
 			}
@@ -438,14 +439,15 @@
 		//to appear when slideshow's parent has no fixed width then slides will 
 		//be almost 17px (width of scrollbar) wider than parent element causing 
 		//layout issues...
-		if (options.variableWidth) update_width();	
+		//if (options.variableWidth) update_width();	
 	}
 	
 	var slideHeight = function() {
-		var temp;
-		var index = options.loop ? slideNum : slideNum-1;		
-		if (options.visibleSlidesCount == 1) {
-			temp = $(id + ' .slide:eq('+ index +')').outerHeight();
+		var index = options.loop ? slideNum : slideNum-1;	
+
+		var temp;		
+		if (options.visibleSlidesCount === 1) {
+			temp = $(id + ' .slide').eq(index).outerHeight();
 		} else {
 			temp = (function() { //find highest slide's height
 				var h = 0;
@@ -460,9 +462,6 @@
 		
 		return temp;
 	}
-	
-
-	
 
 	//replace code with one from below:
 	// http://stackoverflow.com/questions/4857896/jquery-callback-after-all-images-in-dom-are-loaded

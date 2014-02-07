@@ -1,0 +1,22 @@
+.slideshow.loading {
+	background: url(demo/img/loader.gif) no-repeat center center;
+}
+
+/* do not show slides during loading */
+.slideshow.loading .slide {
+	visibility: hidden;
+}
+
+.slideshow .wrapper {
+	overflow: hidden;
+	position: relative;
+}
+
+.slideshow .slides {
+	display: none;
+	position: absolute;
+}
+
+.slideshow .slide {
+	position: absolute;
+}

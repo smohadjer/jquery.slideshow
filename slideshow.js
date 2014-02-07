@@ -1,5 +1,5 @@
 /**
-* jquery.slideshow.js v1.0.0 - a responsive touch-friendly Slideshow based on jQuery
+* jquery.slideshow.js v1.0.1 - a responsive touch-friendly Slideshow based on jQuery
 * https://github.com/SaeidMohadjer/jquery.slideshow
 * Copyright 2014 Saeid Mohadjer
 * Released under the MIT license - http://opensource.org/licenses/MIT
@@ -9,12 +9,13 @@
 //http://blog.safaribooksonline.com/2012/04/18/mapping-mouse-events-and-touch-events-onto-a-single-event/
 (function(){TouchMouseEvent={DOWN:"touchmousedown",UP:"touchmouseup",MOVE:"touchmousemove"};var e=function(e){var t;switch(e.type){case"mousedown":t=TouchMouseEvent.DOWN;break;case"mouseup":t=TouchMouseEvent.UP;break;case"mousemove":t=TouchMouseEvent.MOVE;break;default:return}var r=n(t,e,e.pageX,e.pageY);$(e.target).trigger(r)};var t=function(e){var t;switch(e.type){case"touchstart":t=TouchMouseEvent.DOWN;break;case"touchend":t=TouchMouseEvent.UP;break;case"touchmove":t=TouchMouseEvent.MOVE;break;default:return}var r=e.originalEvent.touches[0];var i;if(t==TouchMouseEvent.UP)i=n(t,e,null,null);else i=n(t,e,r.pageX,r.pageY);$(e.target).trigger(i)};var n=function(e,t,n,r){return $.Event(e,{pageX:n,pageY:r,originalEvent:t})};var r=$(document);if("ontouchstart"in window){r.on("touchstart",t);r.on("touchmove",t);r.on("touchend",t)}else{r.on("mousedown",e);r.on("mouseup",e);r.on("mousemove",e)}})()
 
- function Slideshow(slideshow_options) {
+function Slideshow(slideshow_options) {
 	try {
 		$(document);
 	} catch (e) {
 		alert('jQuery is not available!');
 	}
+	
 	if (!slideshow_options.id) {
 		alert('Slideshow id has not been set!');
 	};
@@ -26,8 +27,6 @@
 		autoplay_start_delay : 0,
 		callback			 : false,		
 		displayTime          : 3000,
-		dataType			 : 'html',  //'xml', 'html'		
-		data				 : null,
 		easing				 : 'swing', 			
 		id                   : null,
 		startingSlideNumber  : 1,
@@ -52,20 +51,42 @@
 	};
 	
 	var options = $.extend(true, settings, slideshow_options);	
-	if (options.visibleSlidesCount > 1) options.slide_is_as_wide_as_slideshow = false;
 	
 	//private properties	
 	var slideshow = this,
 		id = '#' + options.id,
 		$slideshow = $(id),
+		$slides = $slideshow.find('.slides'),
 		slideNum,
-		slideTimer, autoplay_timeout,
+		slideTimer, 
+		autoplay_timeout,
 		previousSlidenum = 0,
 		slide = {},
 		slides_width = 0,
 		tallest_slide_height = 0;
+		
 	//public properties
-	slideshow.width = null;
+	this.width = null;
+	
+	if (options.visibleSlidesCount > 1) {
+		options.slide_is_as_wide_as_slideshow = false;
+	}
+	
+	$slideshow.addClass('loading');
+	
+	if ($slideshow.find('.slide img').length != 0 && options.preload_images) {
+		//preload images
+		if (jQuery.fn.imagesLoaded) {
+			$slides.imagesLoaded(function() {
+				init();
+			});				
+		} else {
+			console.log('jquery.imagesloaded.js is missing!');
+			init();
+		}			
+	} else {
+		init();		
+	}
 		
 	//public methods
 	this.slideNumber = function(num) {
@@ -76,11 +97,6 @@
 		} else {
 			return slideNum;
 		}
-	}
-
-	this.align = function() {
-		options.align = alignment;
-		moveToSlide(slideNum);
 	}
 	
 	this.getSlideCount = function() {
@@ -106,7 +122,7 @@
 	}
 	
 	this.add_slide = function(slide_markup) {
-		$(id + ' .slides').prepend(slide_markup);
+		$slides.prepend(slide_markup);
 		slideNum = 1;	
 			
 		if (slide.count == 0) {
@@ -142,32 +158,7 @@
 		}
 	}
 	
-	//private methods	
-	var preload_images = function() {
-		if (jQuery.fn.imagesLoaded) {
-			$(id + ' .slides').imagesLoaded(function() {
-				$(id).css({'background-image':'none'});
-				$(id).removeClass('loading');
-				init();
-			});				
-		} else {
-			console.log('jquery.imagesloaded.js is missing!');
-		}		
-	}
-	
-	var setup = function() {
-		$slideshow.addClass('loading');	
-		var slides = $('<div class="slides"></div>');
-		slides.append($(id + ' .slide'));
-		$slideshow.find('.wrapper').append(slides);	
-		$slideshow.css({
-			'background-image': 'url('+ options.loader_image +')',
-			'background-repeat': 'no-repeat',
-			'background-position': 'center center'
-		});	
-	}
-	
-	var update_width = function() {
+	function update_width() {
 		//slideshow.width = $slideshow.parent().width();
 		slideshow.width = $slideshow.find('.wrapper').width();
 		if (options.slide_is_as_wide_as_slideshow) {
@@ -183,7 +174,7 @@
 		}
 	}
 	
-	var create_slideTabs = function() {
+	function create_slideTabs() {
 		var slideTabs = $(id + ' .slideTabs');
 		
 		//auto generate tab labels if markup is empty
@@ -203,19 +194,10 @@
 		});
 	}
 	
-	var set_styles = function() {
-		$slideshow.find('.wrapper').css({
-			'overflow': 'hidden',
-			'position': 'relative'
-		}).find('.slides').css({
-			'display': 'none',
-			'position': 'absolute'
-		}).find('.slide').css({
-			'position': 'absolute'
-		});
-	}
 	
-	var init = function() {
+	function init() {
+		$slideshow.removeClass('loading');	
+	
 		slideNum = options.startingSlideId ? $('#'+ options.startingSlideId).index()+1 : options.startingSlideNumber;
 		
 		if (options.autoplay) init_autoplay();
@@ -231,7 +213,7 @@
 		if (options.touch_drag) add_drag_handlers();
 
 		//div.slides must be visible before positioning code runs as positioning relies on $.width() which doesn't work on hidden elements
-		$(id + ' .slides').show(); 
+		$slides.show(); 
 
 		//set slideshow and slide width
 		if (options.variableWidth) {
@@ -247,7 +229,7 @@
 		moveToSlide(options.loop ? slideNum : slideNum-1, 0);
 	}
 	
-	var set_window_resize_handler = function() {
+	function set_window_resize_handler() {
 		$(window).resize(function() {
 			update_width();
 			positionSlides();		
@@ -259,7 +241,7 @@
 		});		
 	}
 	
-	var add_event_handlers = function() {
+	function add_event_handlers() {
 		$slideshow.on('click', '.prev, .next', function(e) {
 			e.preventDefault();
 			if (!$(this).hasClass('disabled')) {
@@ -269,7 +251,7 @@
 		});	
 	}
 	
-	var init_autoplay = function() {
+	function init_autoplay() {
 		options.loop = true;
 		autoplay_timeout = window.setTimeout(function() {
 			slideTimer = window.setInterval(function() {
@@ -278,15 +260,15 @@
 		}, options.autoplay_start_delay);	
 	}
 	
-	var adjust_dom_for_looping = function() {
+	function adjust_dom_for_looping() {
 		//we insert a clone of first slide after the last slide and a clone of last
 		//slide before the first required for seamless looping effect
 		var clone1 = $(id + ' .slide').first().clone().addClass('fake post_last');
 		var clone2 = $(id + ' .slide').last().clone().addClass('fake pre_first');
-		$(id + ' .slides').append(clone1).prepend(clone2);	
+		$slides.append(clone1).prepend(clone2);	
 	}
 		
-	var disableAutoplay = function() {
+	function disableAutoplay() {
 		if (options.autoplay) {
 			options.autoplay = false;		
 			window.clearInterval(slideTimer);  	
@@ -294,7 +276,7 @@
 		}
 	}	
 
-	var navigate = function(direction, event) {
+	function navigate(direction, event) {
 		//disable autoplay when user clicks next/prev buttons
 		if (event && options.autoplay) disableAutoplay();
 		
@@ -304,12 +286,13 @@
 					slideNum++;
 				} else {
 					//jump to first slide which is same as last (current) slide
-					$(id + ' .slides').css( { 
+					$slides.css( { 
 						'left' : - slide.div.eq(1).position().left 
 					});
 					slideNum = 2;
 				}	
 			} else {
+				console.log(slideNum, slide.count);
 				if (slideNum < slide.count ) {
 					slideNum++
 				} 				
@@ -320,7 +303,7 @@
 					slideNum--;
 				} else {
 					//jump to last slide which is same as first (current) slide
-					$(id + ' .slides').css( { 
+					$slides.css( { 
 						'left' : - slide.div.eq(slide.count-2).position().left 
 					});	
 					slideNum = slide.count - 3;						
@@ -335,31 +318,31 @@
 		moveToSlide(options.loop ? slideNum : slideNum - 1);			
 	}
 	
-	var positionSlides = function() {
+	function positionSlides() {
 		var left = 0;
 		var marginRight = parseInt(slide.div.css('margin-right')) || 0;
 
 		//we set width of div.slides to a very large value so that content of div.slide will not wrap due to slideshows fixed width value. This is important when slide divs's width is not
 		//fixed and is calculated on the fly by javascript. After all slides are positioned we update width of div.slides to the correct value (even though there is no need for that).
 		//remove this hack later when you find a better solution to avoid wrapping of div.slide content.
-		$(id + ' .slides').width(50000);
+		$slides.width(50000);
 		for (var i = 0; i < slide.count; i++) {	
 			slide.div.eq(i).css('left', left+'px');
 			left = left + slide.div.eq(i).outerWidth()+ marginRight;
 			//+ ( (i != slide.count-1) ? marginRight : 0 );
 			slides_width = left;
 		}
-		$(id + ' .slides').width(slides_width);		
+		$slides.width(slides_width);		
 	}		
 	
-	var moveToSlide = function(num, delay) {
+	function moveToSlide(num, delay) {
 		var _delay = (delay == undefined) ? options.transition_delay : delay;
 		var currentSlide = slide.div.eq(num);
 		var slide_left = currentSlide.position().left;
 		var slide_center = currentSlide.position().left + currentSlide.width()/2;
 		var slideshow_center = slideshow.width/2;		
 		
-		if (options.align == 'center') {
+		if (options.align === 'center') {
 			if (slide_center > slideshow_center) {
 				if (slide_center < slides_width - slideshow_center) {
 					slide_left = slide_left - (slideshow.width - currentSlide.width())/2;
@@ -378,7 +361,7 @@
 		currentSlide.addClass('currentSlide');
 		
 		//stop()'s jumpToEnd should be false else loop animation will be buggy when next/prev btns are clicked fast
-		$(id + ' .slides')
+		$slides
 			.stop(true, false)
 			.animate( { 'left' : - slide_left}, _delay, options.easing, function() {
 				if (options.variableHeight) {
@@ -389,7 +372,7 @@
 		}	);		
 	}
 	
-	var add_drag_handlers = function() {
+	function add_drag_handlers() {
 		var startX, endX;
 		var slides = slide.div;
 		
@@ -430,7 +413,7 @@
 		});
 	}	
 
-	var setSlideHeight = function() {
+	function setSlideHeight() {
 		$(id + ' .wrapper').css('height', slideHeight());
 
 		options.align_buttons();
@@ -442,7 +425,7 @@
 		//if (options.variableWidth) update_width();	
 	}
 	
-	var slideHeight = function() {
+	function slideHeight() {
 		var index = options.loop ? slideNum : slideNum-1;	
 
 		var temp;		
@@ -465,7 +448,7 @@
 
 	//replace code with one from below:
 	// http://stackoverflow.com/questions/4857896/jquery-callback-after-all-images-in-dom-are-loaded
-	var addImageErrorLoadHandlers = function() {
+	function addImageErrorLoadHandlers() {
 		var images = $(id + ' .slide:eq(' + (slideNum) + ') img');
 		for (var i = 0; i<images.length; i++ ) {
 			images[i].onload = function(evt) {
@@ -477,7 +460,7 @@
 		}
 	}
 
-	var update = function() {
+	function update() {
 		slide.div = $(id + ' .slide');		
 		slide.count = slide.div.length; 
 		positionSlides();
@@ -488,7 +471,7 @@
 		updateUI();
 	}
 
-	var updateUI = function() {	
+	function updateUI() {	
 		//var count = slide.count - options.visibleSlidesCount + 1;
 		if (slide.count == 0) slideNum = 0;
 		
@@ -508,7 +491,7 @@
 		$(id + ' .slidesCount').text(options.loop ? slide.count-2 : slide.count);
 	}
 	
-	var update_tab_state = function() {
+	function update_tab_state() {
 		var tabs = $(id + ' .slideTabs a');	
 		tabs.removeClass('selected');		
 
@@ -525,7 +508,7 @@
 		}	
 	}
 	
-	var update_nav_state = function() {
+	function update_nav_state() {
 		$prev = $slideshow.find('.prev');
 		$next = $slideshow.find('.next');
 		
@@ -556,41 +539,5 @@
 			}				
 		}	
 	}
-	
-	var start = function() {
-		setup();
-		set_styles();
 		
-		if ($slideshow.find('.slide img').length != 0 && options.preload_images) {
-			preload_images();
-		} else {
-			$(id).css({'background-image':'none'});
-			$(id).removeClass('loading');
-			init();		
-		}
-	}
-	
-	var create_slideshow_markup = function() {
-		$.ajax({
-			url: options.data,
-			dataType: "xml",
-			success: function(xml) {			
-				var content = "";
-				$(xml).find('slide').each(function() {
-					var id = ( $(this).attr('id')) ? 'id="' + $(this).attr('id') + '"' : '';
-					content += '<div class="slide"'+ id +'>'+$(this).text()+'</div>';
-				});
-				var test = $('<div class="wrapper"></div>');
-				test.append(content);
-				$(id).append(test);
-				start();
-			}
-		});		
-	}
-	
-	if (options.dataType == 'xml') {
-		create_slideshow_markup()
-	} else {
-		start();
-	}
 }

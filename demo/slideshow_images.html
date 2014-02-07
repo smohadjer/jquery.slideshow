@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="A minimal jQuery slideshow">
 		<title>jquery.slideshow demo</title>
+		<link rel="stylesheet" href="../slideshow.css" />
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
@@ -13,26 +14,32 @@
 			$(document).ready(function() {				
 				var slideshow = new Slideshow({
 					id: 'slideshow',
+					loop: false,
 					autoplay: true,
-					startingSlideId: 'slide_3',
+					//startingSlideId: 'slide_3',
 					autoplay_start_delay: 3000,
 					transition_delay: 500,
 					easing: 'easeOutCubic',
+					variableHeight: true,
+					variableWidth: true,
 					callback: function(obj) {
-						console.log(obj.slideNumber());
+						//console.log(obj.slideNumber());
 					}					
 				});				
 			});
 		</script>		
-		<style type="text/css">			
-			#slideshow .wrapper {
-				width: 700px;
-				height: 300px;
+		<style type="text/css">	
+			.slideshow {
+				width: 100%;
 			}
-			#slideshow .slide  {
-				margin-right: 20px;
+			
+			@media screen and (min-width: 600px) {
+				.slideshow {
+					width: 50%;
+				}
 			}
-			#slideshow .slide p {
+			
+			.slideshow .caption {
 				background-color: rgba(0, 0, 0, 0.5);
 				color: #fff;
 				margin: 0;
@@ -41,43 +48,43 @@
 				bottom: 0;
 				width: 98%;
 			}
-			#slideshow .slide img {
+			
+			.slideshow .slide img {
 				vertical-align: bottom;
+				width: 100%;
 			}
-			#slideshow button {
-				margin-bottom: 5px;
-			}
-			#slideshow button.disabled {
+			
+			.slideshow button.disabled {
 				color: #999;
 			}
 		</style>
 	</head>
-	<body>
-		<div id="content">	 
-			<h1>Slideshow with loop, autoplay, and touch support</h1>
-			<div id="slideshow">
-				<button class="prev">Previous</button>
-				Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
-				<button class="next">Next</button>
-				<div class="wrapper">
+	<body> 
+		<h1>Slideshow with loop, autoplay, and touch support</h1>
+		<div id="slideshow" class="slideshow">
+			<button class="prev">Previous</button>
+			Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
+			<button class="next">Next</button>
+			<div class="wrapper">
+				<div class="slides">
 					<div class="slide">					
-						<img src="http://lorempixel.com/700/300/abstract/1/" />
-						<p>Slide 1 caption Donec volutpat dapibus rhoncus. Nulla elementum lectus nec est tristique et varius dolor ultricies. Nulla tristique augue et elit pharetra pharetra.</p>
+						<img src="http://lorempixel.com/640/360/abstract/1/" />
+						<p class="caption">Slide 1 caption</p>
 					</div>
 					<div class="slide">					
-						<img src="http://lorempixel.com/700/300/abstract/2/" />
-						<p>Slide 2 caption</p>
+						<img src="http://lorempixel.com/640/360/abstract/2/" />
+						<p class="caption">Slide 2 caption</p>
 					</div>
 					<div class="slide">					
-						<img src="http://lorempixel.com/700/300/abstract/3/" />
-						<p>Slide 3 caption</p>
+						<img src="http://lorempixel.com/640/360/abstract/3/" />
+						<p class="caption">Slide 3 caption</p>
 					</div>					
 					<div class="slide">					
-						<img src="http://lorempixel.com/700/300/abstract/4/" />
-						<p>Slide 4 caption</p>
-					</div>	
+						<img src="http://lorempixel.com/640/360/abstract/4/" />
+						<p class="caption">Slide 4 caption</p>
+					</div>
 				</div>
-			</div>				
-		</div>
+			</div>
+		</div>				
 	</body>
 </html>

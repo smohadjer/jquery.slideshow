@@ -5,13 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="A minimal jQuery slideshow">
 		<title>jquery.slideshow demo</title>
+		<link rel="stylesheet" href="../slideshow.css" />		
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
 		<script src="../slideshow.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {        
-				$('.slide').click(function() {	
+				$('.slideshow .slide').click(function() {	
 					var num = $(this).index()+1;
 					slideshow.slideNumber(num);
 				});
@@ -19,40 +20,47 @@
 				slideshow = new Slideshow({
 					id: 'slideshow_thumbs',
 					align: 'center',
+					loop: false,
 					startingSlideNumber: 5,
 					transition_delay: 400,
 					slide_is_as_wide_as_slideshow: false,
 					callback: function(obj) {
-						showFullsize(obj.slideNumber());
+						var num = obj.slideNumber();
+						var src = $('.slideshow .slide').eq(num-1).find('img').attr('src');
+						src = src.replace('100/75', '500/300');
+						$('.slideshow .fullsize').attr('src', src);							
 					}
 				});
-			});
-			
-			function showFullsize(num) {
-				var src = $('.slide').eq(num-1).find('img').attr('src');
-				src = src.replace('100/75', '500/300');
-				$('#fullsize').attr('src', src);				
-			}			
+			});		
 		</script>
 		<style type="text/css">
-			#slideshow_thumbs .wrapper {			
-				width: 500px;			
+			.slideshow {			
+				width: 40%;			
 				height: 150px;
 				margin-top: 10px;
 			}
-			.slide {
+			
+			.slideshow .wrapper {			
+				width: 100%;			
+				height: 150px;
+				margin-top: 10px;
+			}
+			.slideshow .slide {
 				margin-right: 5px;
 				cursor: pointer;
 			}
+			
+			.slideshow .fullsize {
+				width: 100%;
+			}
 		</style>
 	</head>
-	<body>
-		<div id="content">	 	
-			<h3>Slideshow with thumbnails</h3>
-			<p>Clicking a thumbnail brings it to center when possible.</p>			
-			<img id="fullsize" src="http://lorempixel.com/500/300/nature/1/" alt="" />
-			<div id="slideshow_thumbs" class="slideshow">
-				<div class="wrapper">
+	<body> 	
+		<h1>Responsive slideshow with thumbnails</h1>
+		<div id="slideshow_thumbs" class="slideshow">
+			<img class="fullsize" src="http://lorempixel.com/500/300/nature/1/" alt="" />		
+			<div class="wrapper">
+				<div class="slides">
 					<div class="slide">
 						<img src="http://lorempixel.com/100/75/nature/1/" alt=""  />
 					</div>
@@ -79,7 +87,7 @@
 					</div>
 					<div class="slide">
 						<img src="http://lorempixel.com/100/75/nature/10/" alt="" />
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>

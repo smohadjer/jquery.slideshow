@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="A minimal jQuery slideshow">
 		<title>jquery.slideshow demo</title>
+		<link rel="stylesheet" href="../slideshow.css" />		
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
@@ -14,30 +15,24 @@
 				var slideshow_tabs = new Slideshow({
 					id : 'slideshow_tabs',
 					preload_images: false,
-					slide_is_as_wide_as_slideshow: false					
+					variableWidth: true,
+					variableHeight: true				
 				});    
 			});
 		</script>
 		<style type="text/css">
 			#slideshow_tabs {
 				border: solid 1px #666;
-				font: normal 11px/11px arial;
-				width: 270px;
-				height: 255px;
+				width: 30%;
 				background: #fff;
 			}
 			#slideshow_tabs .wrapper {
-				width: 270px;
-				height: 255px;
-			}			
-			#slideshow_tabs .slides {
-				margin-left: 10px;
+				width: 95%;
+				margin: 2.5%;
 			}
 
 			#slideshow_tabs .slide {
-				width: 230px;
-				height: 180px;
-				margin: 10px;
+				margin: 0 10px;
 				padding: 10px;				
 				background: #eee;
 				overflow: auto;
@@ -80,18 +75,20 @@
 					<a href="#">dolor</a>
 				</div>	
 				<div class="wrapper">
-					<div class="slide">
-						<p>Slide1 Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat.</p>
-						<p>Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus.</p>
-						<p>Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
-					</div>
-					<div class="slide">
-						Slide 2 Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.
-					</div>
-					<div class="slide">
-						<p>Slide 3 Praesent vitae sapien tellus, eget porttitor arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean magna sapien, varius sit amet fringilla at, dictum vel lacus. Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus.</p>
-						<p>Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
-					</div>
+					<div class="slides">
+						<div class="slide">
+							<p>Slide1 Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat.</p>
+							<p>Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus.</p>
+							<p>Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
+						</div>
+						<div class="slide">
+							Slide 2 Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.
+						</div>
+						<div class="slide">
+							<p>Slide 3 Praesent vitae sapien tellus, eget porttitor arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean magna sapien, varius sit amet fringilla at, dictum vel lacus. Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus.</p>
+							<p>Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
+						</div>
+					<div>
 				</div>
 			</div>  
 		</div>

@@ -7,14 +7,11 @@ A responsive touch-friendly slideshow based on jQuery
 <ul>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Minimal</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_images.html">with image preloading</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_number.html">auto-generated tabs (number)</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_bullet.html">auto-generated tabs (bullets)</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">labeled tabs</a></li>						
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_xml_category.html">XML &amp; bookmarking</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">labeled tabs</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">thumbnails</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">multiple visible slides</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_variable_height.html">variable height</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_resizable.html">resizable fullsize</a></li>					
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_variable_height.html">variable height</a></li>				
 </ul>
 
 <h3>Features</h3>
@@ -23,7 +20,6 @@ A responsive touch-friendly slideshow based on jQuery
 	<li>Ability to easily modify look and feel via HTML and CSS adjustments</li>
 	<li>Navigational tabs can be auto-generated or manually inserted in markup</li>
 	<li>Ability to display multiple slides simultaneously</li>
-	<li>Ability to read content from XML via data-type: "xml" option</li>
 	<li>Supports responsive layouts</li>
 	<li>Supports touch devices</li>
 	<li>Supports endless looping</li>
@@ -35,9 +31,7 @@ A responsive touch-friendly slideshow based on jQuery
 <ul>
 	<li><strong>autoplay</strong>: false [true]</li>
 	<li><strong>autoplay_start_delay</strong>: 0, time in miliseconds that it takes for autoplay to start</li>
-	<li><strong>callback</strong>: a function that runs when slide buttons are clicked.</li>
-	<li><strong>data</strong>: null, if dataType is set to xml data should be URL to xml</li>							
-	<li><strong>dataType</strong>: "html" ["xml"]</li>							
+	<li><strong>callback</strong>: a function that runs when slide buttons are clicked.</li>						
 	<li><strong>displayTime</strong>: 3000, is used only when autoplay is set to true and indicates the amount of time a slide stays on screen</li>
 	<li><strong>easing</strong>: "swing" ["easeOutCubic", "easeOutQuart", "easeOutQuad", ...], using jquery.easing.1.3.js</li>
 	<li><strong>id</strong>: id of slideshow container (a required parameter)</li>

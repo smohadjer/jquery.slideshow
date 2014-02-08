@@ -38,7 +38,7 @@ A responsive touch-friendly slideshow based on jQuery
 	<li><strong>loader_image</strong>: "img/loader.gif", path to image to be used as loader</li>
 	<li><strong>loop</strong>: true [false]</li>
 	<li><strong>preload_images</strong>: true [false], Set this to false if you have specified a width for div.slide in CSS as then there is no need to wait for all images to load first which otherwise is required in order to calculate the width of each slide. This parameter relies on jquery.imagesloaded.js plugin which is included in slideshow.min.js.</li>
-	<li><strong>slide_is_as_wide_as_slideshow</strong>: true [false], by default slides inherit their width from their slideshow. If you want to have slides that are narrower than slideshow such as showing multiple slides simultanously then set this to false and use css to specify a width for your slides.</li>
+	<li><strong>multiple_slides</strong>: Set to true when more than one slide should be visible. Default: false</li>
 	<li><strong>slideTab_has_value</strong>: false [true], by default slideshow generated tabs have no value, if set to true they would have integers as value.</li>
 	<li><strong>startingSlideId</strong>: null, id of slide that should be used as starting slide</li>
 	<li><strong>startingSlideNumber</strong>: 1, number of slide that should be used as starting slide</li>

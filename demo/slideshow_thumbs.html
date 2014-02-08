@@ -23,7 +23,7 @@
 					loop: false,
 					startingSlideNumber: 5,
 					transition_delay: 400,
-					slide_is_as_wide_as_slideshow: false,
+					multiple_slides: true,
 					callback: function(obj) {
 						var num = obj.slideNumber();
 						var src = $('.slideshow .slide').eq(num-1).find('img').attr('src');
@@ -37,7 +37,6 @@
 			.slideshow {			
 				width: 40%;			
 				height: 150px;
-				margin-top: 10px;
 			}
 			
 			.slideshow .wrapper {			
@@ -46,8 +45,19 @@
 				margin-top: 10px;
 			}
 			.slideshow .slide {
-				margin-right: 5px;
+				border: solid 4px #fff;
 				cursor: pointer;
+			}
+
+			.slideshow .slide img {
+				vertical-align: top;
+			}
+
+			.slideshow .slide:last-child {
+			}
+
+			.slideshow .slide.currentSlide {
+				border-color: #ccc;
 			}
 			
 			.slideshow .fullsize {

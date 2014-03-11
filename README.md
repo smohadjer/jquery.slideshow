@@ -1,7 +1,52 @@
-jquery.slideshow
-================
+#jquery.slideshow 1.0.1
+##Responsive Touch-friendly jQuery Slideshow
 
-A responsive touch-friendly slideshow based on jQuery
+##How to Use
+
+###Step 1: Link required files
+
+```html
+<!-- jQuery library from CDN  -->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<link href="css/slideshow.css" rel="stylesheet" />
+<script src="js/slideshow.js"></script>
+```
+
+###Step 2: Create HTML markup
+
+```html
+<div id="mySlideshow" class="slideshow">
+	<div class="meta">
+		<button class="prev">Previous</button>
+		Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
+		<button class="next">Next</button>
+	</div>
+	<div class="wrapper">
+		<div class="slides">
+			<div class="slide">
+				<img src="http://lorempixel.com/640/360/abstract/1/" />
+			</div>
+			<div class="slide">
+				<img src="http://lorempixel.com/640/360/abstract/2/" />
+			</div>
+			<div class="slide">
+				<img src="http://lorempixel.com/640/360/abstract/3/" />
+			</div>
+		</div>
+	</div>
+</div>
+```
+
+###Step 3: initialize the slideshow
+
+```javascript
+$(document).ready(function(){
+	var slideshow = new Slideshow({
+		id: 'mySlideshow'
+	});	
+});
+```
 
 <h3>Examples</h3>
 <ul>

@@ -1,5 +1,10 @@
-.slideshow.loading {
+.slideshow.loading .wrapper {
 	background: url(demo/img/loader.gif) no-repeat center center;
+	padding: 50px 0;
+}
+
+.slideshow.loading .slides {
+	display: none;
 }
 
 /* do not show slides during loading */
@@ -10,13 +15,19 @@
 .slideshow .wrapper {
 	overflow: hidden;
 	position: relative;
+	width: 100%;
 }
 
 .slideshow .slides {
-	display: none;
 	position: absolute;
 }
 
 .slideshow .slide {
 	position: absolute;
+}
+
+.slideshow .prev,
+.slideshow .next {
+	text-decoration: underline;
+	cursor: pointer;
 }

@@ -5,25 +5,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="A minimal jQuery slideshow">
 		<title>jquery.slideshow demo</title>
-		<link rel="stylesheet" href="../slideshow.css" />		
+		<link rel="stylesheet" href="../slideshow.css" />
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
 		<script src="../slideshow.js"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {        
+			$(document).ready(function() {
 				var slideshow_tabs = new Slideshow({
 					id : 'slideshow_tabs',
 					preload_images: false,
 					variableWidth: true,
-					variableHeight: true				
-				});    
+					variableHeight: true
+				});
 			});
 		</script>
 		<style type="text/css">
 			#slideshow_tabs {
 				border: solid 1px #666;
-				width: 30%;
 				background: #fff;
 			}
 			#slideshow_tabs .wrapper {
@@ -33,12 +32,12 @@
 
 			#slideshow_tabs .slide {
 				margin: 0 10px;
-				padding: 10px;				
+				padding: 10px;
 				background: #eee;
 				overflow: auto;
 				margin-left: 0;
-			}			
-			
+			}
+
 			.slideTabs {
 				background: #bbb;
 				padding: 5px;
@@ -55,25 +54,25 @@
 				border: solid 1px #666;
 				background: #fff;
 				text-decoration: none;
-				color: #777;  
+				color: #777;
 				outline: none;
 			}
 
 			.slideTabs a.selected {
 				padding-bottom: 11px;
 				border-bottom: 1px #fff solid;
-			}			
+			}
 		</style>
 	</head>
 	<body>
-		<div id="content">	 	
+		<div id="content">
 			<h3>Slideshow with Text Tabs</h3>
 			<div id="slideshow_tabs" class="slideshow">
 				<div class="slideTabs">
 					<a href="#">lorem</a>
 					<a href="#">ipsum</a>
 					<a href="#">dolor</a>
-				</div>	
+				</div>
 				<div class="wrapper">
 					<div class="slides">
 						<div class="slide">
@@ -90,7 +89,7 @@
 						</div>
 					<div>
 				</div>
-			</div>  
+			</div>
 		</div>
 	</body>
 </html>

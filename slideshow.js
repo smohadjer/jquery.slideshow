@@ -10,16 +10,6 @@
 (function(){TouchMouseEvent={DOWN:"touchmousedown",UP:"touchmouseup",MOVE:"touchmousemove"};var e=function(e){var t;switch(e.type){case"mousedown":t=TouchMouseEvent.DOWN;break;case"mouseup":t=TouchMouseEvent.UP;break;case"mousemove":t=TouchMouseEvent.MOVE;break;default:return}var r=n(t,e,e.pageX,e.pageY);$(e.target).trigger(r)};var t=function(e){var t;switch(e.type){case"touchstart":t=TouchMouseEvent.DOWN;break;case"touchend":t=TouchMouseEvent.UP;break;case"touchmove":t=TouchMouseEvent.MOVE;break;default:return}var r=e.originalEvent.touches[0];var i;if(t==TouchMouseEvent.UP)i=n(t,e,null,null);else i=n(t,e,r.pageX,r.pageY);$(e.target).trigger(i)};var n=function(e,t,n,r){return $.Event(e,{pageX:n,pageY:r,originalEvent:t})};var r=$(document);if("ontouchstart"in window){r.on("touchstart",t);r.on("touchmove",t);r.on("touchend",t)}else{r.on("mousedown",e);r.on("mouseup",e);r.on("mousemove",e)}})()
 
 function Slideshow(slideshow_options) {
-	try {
-		$(document);
-	} catch (e) {
-		alert('jQuery is not available!');
-	}
-
-	if (!slideshow_options.id) {
-		alert('Slideshow id has not been set!');
-	};
-
 	//default settings
 	var settings = {
 		align				 : 'left',
@@ -30,16 +20,14 @@ function Slideshow(slideshow_options) {
 		easing				 : 'swing',
 		id                   : null,
 		startingSlideNumber  : 1,
-		startingSlideId		 : null,
 		visibleSlidesCount   : 1,
 		slideTab_has_value	 : false,
 		transition_delay     : 500,
 		preload_images		 : true,
 		loop				 : true,
-		variableHeight		 : false,
-		variableWidth		 : false,
+		variableHeight		 : true,
+		variableWidth		 : true,
 		role				 : '',
-		touch_drag			: true,
 		loader_image		: 'img/loader.gif',
 		multiple_slides: false,
 		slide_margin_right : 0, //percent only used when multiple slides are displayed and slideshow has variable width
@@ -57,17 +45,15 @@ function Slideshow(slideshow_options) {
 		id = '#' + options.id,
 		$slideshow = $(id),
 		$slides = $slideshow.find('.slides'),
-		slideNum,
-		slideTimer,
-		autoplay_timeout,
+		slideNum = options.startingSlideNumber,
+		slideTimer, autoplay_timeout,
 		previousSlidenum = 0,
 		slide = {},
 		slides_width = 0,
 		tallest_slide_height = 0;
 
 	//public properties and methods
-	this.width = null;
-
+	this.width = 0;
 	this.slideNumber = function(num) {
 		if (num) {
 			slideNum = parseInt(num);
@@ -76,116 +62,98 @@ function Slideshow(slideshow_options) {
 		} else {
 			return slideNum;
 		}
-	}
-
+	};
 	this.getSlideCount = function() {
 		return slide.count;
-	}
+	};
 
-	//preloading images
-	$slideshow.addClass('loading');
-	if ($slideshow.find('.slide img').length != 0 && options.preload_images) {
-		//preload images
-		if (jQuery.fn.imagesLoaded) {
-			$slides.imagesLoaded(function() {
+	//preload images
+	(function() {
+		$slideshow.addClass('loading');
+		if ($slides.find('img').length && options.preload_images) {
+			if (typeof jQuery.fn.imagesLoaded !== 'function') {
 				init();
-			});
+				return;
+			}
+			$slides.imagesLoaded(init);
 		} else {
-			console.log('jquery.imagesloaded.js is missing!');
 			init();
 		}
-	} else {
-		init();
-	}
-
-	function update_width() {
-		//slideshow.width = $slideshow.parent().width();
-		slideshow.width = $slideshow.find('.wrapper').width();
-		if (!options.multiple_slides) {
-			slide.div.width(slideshow.width);
-		} else {
-			if (options.visibleSlidesCount > 1) {
-				var total_margins_percent = (options.visibleSlidesCount - 1) * options.slide_margin_right;
-				var slide_width_percent = (100 - total_margins_percent) / options.visibleSlidesCount;
-				options.slide_width_pixel = slideshow.width * slide_width_percent / 100;
-				$slideshow.find('.slide').width(options.slide_width_pixel);
-				$slideshow.find('.slide').css('margin-right',slideshow.width * options.slide_margin_right / 100);
-				slide.div.width(options.slide_width_pixel);
-			}
-		}
-	}
-
-	function create_slideTabs() {
-		var slideTabs = $(id + ' .slideTabs');
-
-		//auto generate tab labels if markup is empty
-		if (slideTabs.children().length == 0) {
-			var tabValue;
-			for (var i=0, ii = options.loop ? slide.count-2 : slide.count; i<ii; i++) {
-				tabValue = options.slideTab_has_value ? i+1 : '';
-				slideTabs.append('<a href="#">' + tabValue + '</a>');
-			}
-		}
-
-		$(id + ' .slideTabs').on('click', 'a', function(e) {
-			e.preventDefault();
-			disableAutoplay();
-			slideNum = $(this).index()+1;
-			moveToSlide(options.loop ? slideNum : slideNum-1);
-		});
-	}
-
+	})();
 
 	function init() {
 		$slideshow.removeClass('loading');
 
-		slideNum = options.startingSlideId ? $('#'+ options.startingSlideId).index()+1 : options.startingSlideNumber;
-
-		if (options.autoplay) init_autoplay();
+		if (options.autoplay) enable_autoplay();
 		if (options.loop) adjust_dom_for_looping();
+		setClickHandlersForSlideshowButtons();
 
-		//slide.margin  =  parseInt($(id + ' .slide').css('margin-right'));
-		slide.div = $(id + ' .slide');
-		slide.count = slide.div.length;
-
-		add_event_handlers();
+		slide.div = $slides.find('.slide');
+		slide.count = slide.div.length; //takes fake slides into account
 
 		if ($slideshow.has('.slideTabs')) create_slideTabs();
-		if (options.touch_drag) add_drag_handlers();
+		add_drag_handlers();
 
-		//div.slides must be visible before positioning code runs as positioning relies on $.width() which doesn't work on hidden elements
-		$slides.show();
+		$(window).on('resize.slideshow', windowResizeHandler);
+		$(window).trigger('resize.slideshow');
+	}
 
-		//set slideshow and slide width
-		if (options.variableWidth) {
-			update_width();
-		} else {
-			slideshow.width = $slideshow.find('.wrapper').width();
+	function enable_autoplay() {
+		options.loop = true;
+		autoplay_timeout = window.setTimeout(function() {
+			slideTimer = window.setInterval(function() {
+				navigate('next');
+			}, options.displayTime);
+		}, options.autoplay_start_delay);
+	}
 
-			if (!options.multiple_slides) {
-				$slideshow.find('.slide').width(slideshow.width);
+	function disable_autoplay() {
+		if (options.autoplay) {
+			options.autoplay = false;
+			window.clearInterval(slideTimer);
+			window.clearTimeout(autoplay_timeout);
+		}
+	}
+
+	function setSlideSize() {
+		var count = options.visibleSlidesCount;
+		var total_margins = (count - 1) * options.slide_margin_right;
+		var slide_width = (100 - total_margins) / count;
+		var slide_width_pixel = slideshow.width * slide_width / 100;
+		var marginRight = slideshow.width * options.slide_margin_right / 100;
+
+		$slideshow.find('.slide').width(slide_width_pixel).css('margin-right', marginRight);
+		return slide_width_pixel;
+	}
+
+	function create_slideTabs() {
+		var $tabs = $slideshow.find('.slideTabs');
+
+		//generate tab labels if markup is empty
+		if ($tabs.children().length === 0) {
+			var count = options.loop ? slide.count-2 : slide.count;
+			for (var i=0; i<count; i++) {
+				$tabs.append('<a href="#"></a>');
 			}
 		}
 
-		set_window_resize_handler();
-
-		positionSlides();
-		moveToSlide(options.loop ? slideNum : slideNum-1, 0);
-	}
-
-	function set_window_resize_handler() {
-		$(window).resize(function() {
-			update_width();
-			positionSlides();
+		$tabs.on('click', 'a', function(e) {
+			e.preventDefault();
+			disable_autoplay();
+			slideNum = $(this).index() + 1;
 			moveToSlide(options.loop ? slideNum : slideNum-1);
-
-			if (options.variableHeight) {
-				setSlideHeight();
-			}
 		});
 	}
 
-	function add_event_handlers() {
+	function windowResizeHandler(e) {
+		slideshow.width = $slideshow.width();
+		options.multiple_slides ? slide.div.width(setSlideSize()) : slide.div.width(slideshow.width);
+		positionSlides();
+		moveToSlide(options.loop ? slideNum : slideNum-1, 0);
+		if (options.variableHeight) setSlideHeight();
+	}
+
+	function setClickHandlersForSlideshowButtons() {
 		$slideshow.on('click', '.prev, .next', function(e) {
 			e.preventDefault();
 			if (!$(this).hasClass('disabled')) {
@@ -195,34 +163,17 @@ function Slideshow(slideshow_options) {
 		});
 	}
 
-	function init_autoplay() {
-		options.loop = true;
-		autoplay_timeout = window.setTimeout(function() {
-			slideTimer = window.setInterval(function() {
-				navigate('next');
-			}, options.displayTime);
-		}, options.autoplay_start_delay);
-	}
-
 	function adjust_dom_for_looping() {
 		//we insert a clone of first slide after the last slide and a clone of last
-		//slide before the first required for seamless looping effect
-		var clone1 = $(id + ' .slide').first().clone().addClass('fake post_last');
-		var clone2 = $(id + ' .slide').last().clone().addClass('fake pre_first');
+		//slide before the first. These fake slides are required for endless looping.
+		var clone1 = $slides.find('.slide').first().clone().addClass('fake post_last');
+		var clone2 = $slides.find('.slide').last().clone().addClass('fake pre_first');
 		$slides.append(clone1).prepend(clone2);
-	}
-
-	function disableAutoplay() {
-		if (options.autoplay) {
-			options.autoplay = false;
-			window.clearInterval(slideTimer);
-			window.clearTimeout(autoplay_timeout);
-		}
 	}
 
 	function navigate(direction, event) {
 		//disable autoplay when user clicks next/prev buttons
-		if (event && options.autoplay) disableAutoplay();
+		if (event && options.autoplay) disable_autoplay();
 
 		if (direction == 'next') {
 			if (options.loop) {
@@ -338,7 +289,7 @@ function Slideshow(slideshow_options) {
 
 			//disable autoplay when user clicks next/prev buttons
 			if (options.autoplay) {
-				disableAutoplay();
+				disable_autoplay();
 			}
 
 			if ( endX - startX < 0) {

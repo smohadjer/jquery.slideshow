@@ -12,23 +12,23 @@
 function Slideshow(slideshow_options) {
 	//default settings
 	var settings = {
-		align				 : 'left',
-		autoplay             : false,
+		align: 'left',
+		autoplay: false,
 		autoplay_start_delay : 0,
-		callback			 : false,
-		displayTime          : 3000,
-		easing				 : 'swing',
-		id                   : null,
-		startingSlideNumber  : 1,
-		visibleSlidesCount   : 1,
-		slideTab_has_value	 : false,
-		transition_delay     : 500,
-		preload_images		 : true,
-		loop				 : true,
-		variableHeight		 : true,
-		variableWidth		 : true,
-		role				 : '',
-		loader_image		: 'img/loader.gif',
+		callback: null,
+		displayTime: 3000,
+		easing: 'swing',
+		id: null,
+		startingSlideNumber: 1,
+		visibleSlidesCount: 1,
+		slideTab_has_value: false,
+		transition_delay: 500,
+		preload_images: true,
+		loop: true,
+		variableHeight: true,
+		variableWidth: true,
+		role : '',
+		loader_image : 'img/loader.gif',
 		multiple_slides: false,
 		slide_margin_right : 0, //percent only used when multiple slides are displayed and slideshow has variable width
 		align_buttons: function() {
@@ -83,8 +83,8 @@ function Slideshow(slideshow_options) {
 
 	function init() {
 		$slideshow.removeClass('loading');
-
 		if (options.autoplay) enable_autoplay();
+
 		if (options.loop) adjust_dom_for_looping();
 		setClickHandlersForSlideshowButtons();
 
@@ -115,17 +115,6 @@ function Slideshow(slideshow_options) {
 		}
 	}
 
-	function setSlideSize() {
-		var count = options.visibleSlidesCount;
-		var total_margins = (count - 1) * options.slide_margin_right;
-		var slide_width = (100 - total_margins) / count;
-		var slide_width_pixel = slideshow.width * slide_width / 100;
-		var marginRight = slideshow.width * options.slide_margin_right / 100;
-
-		$slideshow.find('.slide').width(slide_width_pixel).css('margin-right', marginRight);
-		return slide_width_pixel;
-	}
-
 	function create_slideTabs() {
 		var $tabs = $slideshow.find('.slideTabs');
 
@@ -147,10 +136,28 @@ function Slideshow(slideshow_options) {
 
 	function windowResizeHandler(e) {
 		slideshow.width = $slideshow.width();
-		options.multiple_slides ? slide.div.width(setSlideSize()) : slide.div.width(slideshow.width);
+		if (options.multiple_slides) {
+			if (options.visibleSlidesCount > 1) { //so it doesn't kickin in thumbnail sample. bad code!
+				slide.div.width(setSlideSize());
+			}
+		} else {
+			slide.div.width(slideshow.width);
+		}
 		positionSlides();
 		moveToSlide(options.loop ? slideNum : slideNum-1, 0);
 		if (options.variableHeight) setSlideHeight();
+	}
+
+	function setSlideSize() {
+		var count = options.visibleSlidesCount;
+		var total_width = $slideshow.find('.wrapper').width();
+		var total_margins = (count - 1) * options.slide_margin_right;
+		var slide_width = (100 - total_margins) / count;
+		var slide_width_pixel = parseInt(total_width * slide_width / 100);
+		var marginRight = parseInt(total_width * options.slide_margin_right / 100);
+
+		$slideshow.find('.slide').width(slide_width_pixel).css('margin-right', marginRight);
+		return slide_width_pixel;
 	}
 
 	function setClickHandlersForSlideshowButtons() {

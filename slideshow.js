@@ -144,7 +144,7 @@ function Slideshow(slideshow_options) {
 	}
 
 	function windowResizeHandler(e) {
-		slideshow.width = $slideshow.width();
+		slideshow.width = $slideshow.find('.wrapper').width();
 		if (options.multiple_slides) {
 			if (options.visibleSlidesCount > 1) { //so it doesn't kick in thumbnail sample. bad code!
 				slide.div.width(setSlideSize());

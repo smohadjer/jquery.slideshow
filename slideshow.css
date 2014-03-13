@@ -24,8 +24,27 @@
 
 .slideshow .slide {
 	position: absolute;
+	-moz-box-sizing: border-box;
 }
 
+/***** slideshow tabs ******/
+.slideshow .slideTabs {
+	text-align: center;
+}
+
+.slideshow .slideTabs a {
+	padding: 10px;
+	margin: 0 5px;
+	line-height: 2em;
+	background: url(img/dot_grey_small.png) no-repeat center center;
+	opacity: 1;
+}
+
+.slideshow .slideTabs a.selected {
+	background-image: url(img/dot_blue_small.png);
+}
+
+/***** slideshow buttons *****/
 .slideshow .prev,
 .slideshow .next {
 	text-decoration: underline;
@@ -40,4 +59,9 @@
 
 .slideshow .next {
 	right: 0;
+}
+
+.slideshow .next.disabled,
+.slideshwo .prev.disabled {
+	cursor: default;
 }

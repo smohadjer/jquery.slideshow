@@ -8,86 +8,73 @@
 		<link rel="stylesheet" href="../slideshow.css" />
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="../externals/jquery.easing.1.3.js"></script>
-		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
 		<script src="../slideshow.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				var slideshow_tabs = new Slideshow({
 					id : 'slideshow_tabs',
-					preload_images: false,
-					variableWidth: true,
-					variableHeight: true
+					loop: false
 				});
 			});
 		</script>
 		<style type="text/css">
-			#slideshow_tabs {
-				border: solid 1px #666;
-				background: #fff;
-			}
-			#slideshow_tabs .wrapper {
-				width: 95%;
-				margin: 2.5%;
-			}
-
-			#slideshow_tabs .slide {
-				margin: 0 10px;
-				padding: 10px;
-				background: #eee;
+			.slideshow .slide {
+				background: #ddd;
 				overflow: auto;
-				margin-left: 0;
+				padding: 10px 0;
+				margin-right: 20px;
 			}
 
-			.slideTabs {
-				background: #bbb;
-				padding: 5px;
+			.slideshow .slide * {
+				margin: 10px;
+			}
+
+			.slideshow .slideTabs {
+				padding: 10px 0;
 				padding-bottom: 26px;
-				border-bottom: solid 1px #bbb;
 			}
 
-			.slideTabs a {
+			.slideshow .slideTabs a {
 				padding: 2px 19px 3px;
-				line-height: 12px;
+				line-height: 24px;
 				display: block;
 				float: left;
-				margin-left: 5px;
-				border: solid 1px #666;
-				background: #fff;
+				margin-left: 0;
+				margin-right: 10px;
+				background: #ddd;
 				text-decoration: none;
-				color: #777;
+				color: #000;
 				outline: none;
 			}
 
-			.slideTabs a.selected {
-				padding-bottom: 11px;
-				border-bottom: 1px #fff solid;
+			.slideshow .slideTabs a.selected {
+				padding-bottom: 10px;
+				background: #ddd;
 			}
 		</style>
 	</head>
 	<body>
-		<div id="content">
-			<h3>Slideshow with Text Tabs</h3>
-			<div id="slideshow_tabs" class="slideshow">
-				<div class="slideTabs">
-					<a href="#">lorem</a>
-					<a href="#">ipsum</a>
-					<a href="#">dolor</a>
-				</div>
-				<div class="wrapper">
-					<div class="slides">
-						<div class="slide">
-							<p>Slide1 Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat.</p>
-							<p>Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus.</p>
-							<p>Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
-						</div>
-						<div class="slide">
-							Slide 2 Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.
-						</div>
-						<div class="slide">
-							<p>Slide 3 Praesent vitae sapien tellus, eget porttitor arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean magna sapien, varius sit amet fringilla at, dictum vel lacus. Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus.</p>
-							<p>Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
-						</div>
-					<div>
+		<h1>Slideshow with Text Tabs</h1>
+		<div id="slideshow_tabs" class="slideshow">
+			<div class="slideTabs">
+				<a href="#">lorem</a>
+				<a href="#">ipsum</a>
+				<a href="#">dolor</a>
+			</div>
+			<div class="wrapper">
+				<div class="slides">
+					<div class="slide">
+						<p>Slide1 Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat.</p>
+						<p>Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus.</p>
+						<p>Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
+					</div>
+					<div class="slide">
+						<p>Slide 2 Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus. Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
+					</div>
+					<div class="slide">
+						<p>Slide 3 Praesent vitae sapien tellus, eget porttitor arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean magna sapien, varius sit amet fringilla at, dictum vel lacus. Suspendisse varius nulla non arcu tempor ac bibendum leo fringilla. Suspendisse tempor sodales ante, eu volutpat augue tincidunt dapibus. Mauris lacinia facilisis diam id sagittis. Praesent consectetur nunc purus.</p>
+						<p>Nulla ultricies posuere placerat. Integer dolor est, dignissim in lacinia vitae, facilisis quis felis. Pellentesque suscipit metus id lectus consectetur gravida. Donec a nisl ac augue volutpat dictum vitae non justo. Nunc tempor commodo auctor. Curabitur et enim vel libero euismod dictum vel id purus. Maecenas ac odio metus, id hendrerit elit. Proin at orci erat, a fringilla odio. Maecenas vel ultricies ipsum.</p>
+					</div>
 				</div>
 			</div>
 		</div>

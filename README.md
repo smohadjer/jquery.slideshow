@@ -50,24 +50,20 @@ $(document).ready(function(){
 
 <h3>Examples</h3>
 <ul>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Minimal Slideshow</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_bullet.html">Responsive Slideshow</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with tabs</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">with thumbnails</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">multiple visible slides</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_variable_height.html">variable height</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow with bullet tabs (default)</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
 </ul>
 
 <h3>Features</h3>
 <ul>
+	<li>Supports responsive layouts and touch devices</li>
 	<li>Supports any type of content (HTML, images, videos, etc.)</li>
-	<li>Ability to easily modify look and feel via HTML and CSS adjustments</li>
-	<li>Navigational tabs can be auto-generated or manually inserted in markup</li>
-	<li>Ability to display multiple slides simultaneously</li>
-	<li>Supports responsive layouts</li>
-	<li>Supports touch devices</li>
-	<li>Supports endless looping</li>
-	<li>bookmarking support for each slide via hash tag in URL</li>
+	<li>Ability to easily modify look and feel via HTML and CSS changes</li>
+	<li>Navigational text tabs can be added in markup</li>
+	<li>Ability to display multiple slides</li>
+	<li>Options to enable/disable endless looping and/or autoplay</li>
 	<li>Supports custom easing via jquery easing plugin</li>
 </ul>
 

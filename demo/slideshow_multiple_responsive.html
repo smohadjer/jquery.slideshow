@@ -42,41 +42,20 @@
 			}
 			.slideshow .prev,
 			.slideshow .next {
-				cursor: pointer;
-				position: absolute;
 				top: 0;
 				width: 2.5%;
+				padding: 0;
 			}
-			.slideshow .next {
-				right: 0;
-			}
+
 			.slideshow .disabled {
 				opacity: 0.3;
-				cursor: default;
-			}
-
-			.slideshow .slideTabs {
-				text-align: center;
-				width: 100%;
-			}
-
-			.slideshow .slideTabs a {
-				padding: 10px;
-				margin: 0 5px;
-				line-height: 2em;
-				background: url(img/dot_grey_small.png) no-repeat center center;
-				opacity: 0.6;
-			}
-
-			.slideshow .slideTabs a.selected {
-				opacity: 1;
 			}
 		</style>
 	</head>
 	<body>
 		<h1>Responsive slideshow with multiple visible slides</h1>
 		<div id="slideshow_thumbs" class="slideshow">
-			<img class="prev" src="img/prev2.png" />
+			<img class="prev" src="../img/prev2.png" />
 			<div class="wrapper">
 				<div class="slides">
 					<div class="slide">
@@ -118,7 +97,7 @@
 					</div>
 				</div>
 			</div>
-			<img class="next" src="img/next2.png" />
+			<img class="next" src="../img/next2.png" />
 			<div class="slideTabs"></div>
 		</div>
 	</body>

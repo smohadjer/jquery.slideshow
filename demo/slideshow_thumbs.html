@@ -19,7 +19,7 @@
 
 				var slideshow = new Slideshow({
 					id: 'slideshow_thumbs',
-					mode: 'thumb_nails"
+					mode: 'thumb_nails',
 					align: 'center',
 					loop: false,
 					startingSlideNumber: 5,
@@ -62,6 +62,12 @@
 
 			.slideshow .fullsize {
 				width: 100%;
+			}
+
+			@media screen and (min-width: 768px) {
+				.slideshow {
+					width: 50%;
+				}
 			}
 		</style>
 	</head>

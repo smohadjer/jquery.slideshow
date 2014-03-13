@@ -13,6 +13,7 @@ function Slideshow(slideshow_options) {
 	//default settings
 	var settings = {
 		align: 'left',
+		mode: 'default', //thumb_nails
 		autoplay: false,
 		autoplay_start_delay : 0,
 		callback: null,
@@ -308,18 +309,17 @@ function Slideshow(slideshow_options) {
 				disable_autoplay();
 			}
 
-			if ( endX - startX < 0) {
-				navigate('next');
-			} else if ( endX - startX > 0) {
-				navigate('previous');
+			if (endX < startX) {
+				if (!$next.hasClass('disabled')) navigate('next');
+			} else if ( endX > startX) {
+				if (!$prev.hasClass('disabled')) navigate('previous');
 			} else {
-				if ( slideIndex != slideNum ) {
-					//user clicked a side slide
-					slideNum = slideIndex;
-					positionSlides();
-				} else {
-					//user has clicked current slide
-					//do something
+				if (options.mode === 'thumb_nails') {
+					if ( slideIndex != slideNum ) {
+						//user clicked a side slide
+						slideNum = slideIndex;
+						positionSlides();
+					}
 				}
 			}
 		});

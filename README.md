@@ -17,11 +17,6 @@
 
 ```html
 <div id="mySlideshow" class="slideshow">
-	<div class="meta">
-		<button class="prev">Previous</button>
-		Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
-		<button class="next">Next</button>
-	</div>
 	<div class="wrapper">
 		<div class="slides">
 			<div class="slide">
@@ -34,7 +29,10 @@
 				<img src="http://lorempixel.com/640/360/abstract/3/" />
 			</div>
 		</div>
+		<span class="next"><img src="../img/next4.png" alt="Next" /></span>
+		<span class="prev"><img src="../img/prev4.png" alt="Previous" /></span>
 	</div>
+	<div class="slideTabs"></div>
 </div>
 ```
 

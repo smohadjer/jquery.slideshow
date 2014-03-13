@@ -30,4 +30,14 @@
 .slideshow .next {
 	text-decoration: underline;
 	cursor: pointer;
+	position: absolute;
+	padding: 0 3%;
+}
+
+.slideshow .prev {
+	left: 0;
+}
+
+.slideshow .next {
+	right: 0;
 }

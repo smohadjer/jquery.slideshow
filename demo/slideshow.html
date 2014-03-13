@@ -7,6 +7,7 @@
 		<title>Minimal Slideshow</title>
 		<link rel="stylesheet" href="../slideshow.css" />
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="../externals/jquery.imagesloaded.js"></script>
 		<script src="../slideshow.js"></script>
 		<script>
 			$(document).ready(function() {
@@ -16,22 +17,15 @@
 			});
 		</script>
 		<style>
-			.slideshow {
-				width: 50%;
-			}
+			@media screen and (min-width: 768px) {
+				.slideshow .next img,
+				.slideshow .prev img {
+					width: 20px;
+				}
 
-			.slideshow .prev,
-			.slideshow .next {
-				position: absolute;
-				cursor: pointer;
-				padding: 0 3%;
-			}
-
-			.slideshow .prev {
-				left: 0;
-			}
-			.slideshow .next {
-				right: 0;
+				.slideshow {
+					width: 50%;
+				}
 			}
 		</style>
 	</head>
@@ -40,9 +34,9 @@
 		<div id="demo" class="slideshow">
 			<div class="wrapper">
 				<div class="slides">
-					<img class="slide" src="http://lorempixel.com/640/360/abstract/1/" />
-					<img class="slide" src="http://lorempixel.com/640/360/abstract/2/" />
-					<img class="slide" src="http://lorempixel.com/640/360/abstract/3/" />
+					<img class="slide" src="http://lorempixel.com/640/360/people/4/" />
+					<img class="slide" src="http://lorempixel.com/640/360/people/6/" />
+					<img class="slide" src="http://lorempixel.com/640/360/people/9/" />
 				</div>
 				<span class="next"><img src="img/next4.png" alt="Next" /></span>
 				<span class="prev"><img src="img/prev4.png" alt="Previous" /></span>

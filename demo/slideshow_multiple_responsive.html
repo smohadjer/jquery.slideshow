@@ -14,7 +14,7 @@
 			$(document).ready(function() {
 				slideshow = new Slideshow({
 					id: 'slideshow_thumbs',
-					loop: false,
+					loop: false, //required for multiple slides
 					multiple_slides: true,
 					visibleSlidesCount: 4,
 					slide_margin_right: 3,	//unit is percent
@@ -54,6 +54,23 @@
 				opacity: 0.3;
 				cursor: default;
 			}
+
+			.slideshow .slideTabs {
+				text-align: center;
+				width: 100%;
+			}
+
+			.slideshow .slideTabs a {
+				padding: 10px;
+				margin: 0 5px;
+				line-height: 2em;
+				background: url(img/dot_grey_small.png) no-repeat center center;
+				opacity: 0.6;
+			}
+
+			.slideshow .slideTabs a.selected {
+				opacity: 1;
+			}
 		</style>
 	</head>
 	<body>
@@ -67,8 +84,12 @@
 						<p>caption for slide 1</p>
 					</div>
 					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/2/" />
+						<p>caption for slide 2</p>
+					</div>
+					<div class="slide">
 						<img src="http://lorempixel.com/200/150/nature/3/" />
-						<p>Donec et ligula mi! Fusce ac turpis vel mi Donec et ligula mi!</p>
+						<p>caption for slide 3 Donec et ligula mi! Fusce ac turpis vel mi Donec et ligula mi!</p>
 					</div>
 					<div class="slide">
 						<img src="http://lorempixel.com/200/150/nature/4/" />
@@ -89,12 +110,16 @@
 						<img src="http://lorempixel.com/200/150/nature/8/" />
 					</div>
 					<div class="slide">
+						<img src="http://lorempixel.com/200/150/nature/9/" />
+					</div>
+					<div class="slide">
 						<img src="http://lorempixel.com/200/150/nature/10/" />
-						<p>Donec urpis vel mi Donec et ligula mi!</p>
+						<p>caption for last slide</p>
 					</div>
 				</div>
 			</div>
 			<img class="next" src="img/next2.png" />
+			<div class="slideTabs"></div>
 		</div>
 	</body>
 </html>

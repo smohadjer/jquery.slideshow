@@ -44,6 +44,8 @@ function Slideshow(slideshow_options) {
 	var slideshow = this,
 		id = '#' + options.id,
 		$slideshow = $(id),
+		$prev = $slideshow.find('.prev'),
+		$next = $slideshow.find('.next'),
 		$slides = $slideshow.find('.slides'),
 		slideNum = options.startingSlideNumber,
 		slideTimer, autoplay_timeout,
@@ -120,8 +122,8 @@ function Slideshow(slideshow_options) {
 
 		//generate tab labels if markup is empty
 		if ($tabs.children().length === 0) {
-			var count = options.loop ? slide.count-2 : slide.count;
-			for (var i=0; i<count; i++) {
+			var count = options.loop ? slide.count-2 : slide.count / options.visibleSlidesCount;
+			for (var i=0; i < count; i++) {
 				$tabs.append('<a href="#"></a>');
 			}
 		}
@@ -129,7 +131,13 @@ function Slideshow(slideshow_options) {
 		$tabs.on('click', 'a', function(e) {
 			e.preventDefault();
 			disable_autoplay();
-			slideNum = $(this).index() + 1;
+
+			if (options.visibleSlidesCount > 1) {
+				slideNum = $(this).index() * options.visibleSlidesCount + 1;
+			} else {
+				slideNum = $(this).index() + 1;
+			}
+
 			moveToSlide(options.loop ? slideNum : slideNum-1);
 		});
 	}
@@ -137,7 +145,7 @@ function Slideshow(slideshow_options) {
 	function windowResizeHandler(e) {
 		slideshow.width = $slideshow.width();
 		if (options.multiple_slides) {
-			if (options.visibleSlidesCount > 1) { //so it doesn't kickin in thumbnail sample. bad code!
+			if (options.visibleSlidesCount > 1) { //so it doesn't kick in thumbnail sample. bad code!
 				slide.div.width(setSlideSize());
 			}
 		} else {
@@ -163,10 +171,11 @@ function Slideshow(slideshow_options) {
 	function setClickHandlersForSlideshowButtons() {
 		$slideshow.on('click', '.prev, .next', function(e) {
 			e.preventDefault();
-			if (!$(this).hasClass('disabled')) {
-				var direction = $(this).hasClass('next') ? 'next' : 'previous';
-				navigate(direction, e);
-			}
+			if ($(this).hasClass('disabled')) return;
+
+			disable_autoplay();
+			var direction = $(this).hasClass('next') ? 'next' : 'previous';
+			navigate(direction);
 		});
 	}
 
@@ -178,9 +187,8 @@ function Slideshow(slideshow_options) {
 		$slides.append(clone1).prepend(clone2);
 	}
 
-	function navigate(direction, event) {
-		//disable autoplay when user clicks next/prev buttons
-		if (event && options.autoplay) disable_autoplay();
+	function navigate(direction) {
+		var VScount = options.visibleSlidesCount;
 
 		if (direction == 'next') {
 			if (options.loop) {
@@ -194,12 +202,12 @@ function Slideshow(slideshow_options) {
 					slideNum = 2;
 				}
 			} else {
-				console.log(slideNum, slide.count);
 				if (slideNum < slide.count ) {
-					slideNum++
+					//slideNum++
+					slideNum = slideNum + VScount;
 				}
 			}
-		} else if (direction == 'previous') {
+		} else {
 			if (options.loop) {
 				if (slideNum > 0) {
 					slideNum--;
@@ -211,8 +219,8 @@ function Slideshow(slideshow_options) {
 					slideNum = slide.count - 3;
 				}
 			} else {
-				if (slideNum > 1) {
-					slideNum--;
+				if (slideNum > VScount) {
+					slideNum = slideNum - VScount;
 				}
 			}
 		}
@@ -238,7 +246,8 @@ function Slideshow(slideshow_options) {
 	}
 
 	function moveToSlide(num, delay) {
-		var _delay = (delay == undefined) ? options.transition_delay : delay;
+		//console.log(num, $slides.find('.slide').length);
+		var _delay = (delay === undefined) ? options.transition_delay : delay;
 		var currentSlide = slide.div.eq(num);
 		var slide_left = currentSlide.position().left;
 		var slide_center = currentSlide.position().left + currentSlide.width()/2;
@@ -407,14 +416,11 @@ function Slideshow(slideshow_options) {
 				tabs.eq(slideNum-1).addClass('selected');
 			}
 		} else {
-			tabs.eq(slideNum-1).addClass('selected');
+			tabs.eq(Math.ceil(slideNum/options.visibleSlidesCount)-1).addClass('selected');
 		}
 	}
 
 	function update_nav_state() {
-		$prev = $slideshow.find('.prev');
-		$next = $slideshow.find('.next');
-
 		if (options.visibleSlidesCount == 1) {
 			if ( (slideNum == slide.count) && (slideNum == 1) ) { //there is only one slide
 				$prev.addClass('disabled');
@@ -430,13 +436,13 @@ function Slideshow(slideshow_options) {
 				$next.removeClass('disabled');
 			}
 		} else {
-			if (slideNum == slide.count - options.visibleSlidesCount + 1 ) { // last slide
+			if (slideNum > slide.count - options.visibleSlidesCount) {
 				$prev.removeClass('disabled');
 				$next.addClass('disabled');
-			} else if (slideNum == 1) { // first slide
+			} else if (slideNum < options.visibleSlidesCount) {
 				$prev.addClass('disabled');
 				$next.removeClass('disabled');
-			} else { // other slides
+			} else {
 				$prev.removeClass('disabled');
 				$next.removeClass('disabled');
 			}

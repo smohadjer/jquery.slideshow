@@ -1,6 +1,14 @@
 #jquery.slideshow 1.0.1
 ##Responsive Touch-friendly jQuery Slideshow
 
+##Examples
+<ul>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow with bullet tabs (default)</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
+</ul>
+
 ##How to Use
 
 ###Step 1: Link required files
@@ -45,14 +53,6 @@ $(document).ready(function(){
 	});
 });
 ```
-
-<h3>Examples</h3>
-<ul>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow with bullet tabs (default)</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
-</ul>
 
 <h3>Features</h3>
 <ul>

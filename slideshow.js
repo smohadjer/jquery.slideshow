@@ -24,7 +24,7 @@ function Slideshow(slideshow_options) {
 		visibleSlidesCount: 1,
 		slideTab_has_value: false,
 		transition_delay: 500,
-		preload_images: true,
+		preload_images: false,
 		loop: true,
 		variableHeight: true,
 		variableWidth: true,
@@ -56,6 +56,7 @@ function Slideshow(slideshow_options) {
 		tallest_slide_height = 0;
 
 	//public properties and methods
+	slideshow.isInitialized = false;
 	this.width = 0;
 	this.slideNumber = function(num) {
 		if (num) {
@@ -73,7 +74,7 @@ function Slideshow(slideshow_options) {
 	//preload images
 	(function() {
 		$slideshow.addClass('loading');
-		if ($slides.find('img').length && options.preload_images) {
+		if (options.preload_images && $slides.find('img').length) {
 			if (typeof jQuery.fn.imagesLoaded !== 'function') {
 				init();
 				return;
@@ -99,6 +100,8 @@ function Slideshow(slideshow_options) {
 
 		$(window).on('resize.slideshow', windowResizeHandler);
 		$(window).trigger('resize.slideshow');
+
+		slideshow.isInitialized = true;
 	}
 
 	function enable_autoplay() {

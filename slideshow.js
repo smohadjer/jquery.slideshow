@@ -86,6 +86,12 @@ function Slideshow(slideshow_options) {
 	})();
 
 	function init() {
+		//check if css is loaded
+		if ($slides.css('position') !== 'absolute') {
+			console.warn('slideshow styles are not loaded!');
+			return;
+		}
+
 		if (typeof window.MutationObserver === 'function' && !$slideshow.is(":visible")) {
 			var observer = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {

@@ -118,7 +118,7 @@ function Slideshow(slideshow_options) {
 		add_drag_handlers();
 
 		$(window).on('resize.slideshow', windowResizeHandler);
-		$(window).trigger('resize.slideshow');
+		windowResizeHandler();
 
 		slideshow.isInitialized = true;
 	}

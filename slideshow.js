@@ -86,6 +86,25 @@ function Slideshow(slideshow_options) {
 	})();
 
 	function init() {
+		if (typeof window.MutationObserver === 'function' && !$slideshow.is(":visible")) {
+			var observer = new MutationObserver(function(mutations) {
+			  mutations.forEach(function(mutation) {
+				if ($slideshow.is(":visible")) {
+					observer.disconnect();
+					initSlideshow();
+				}
+			  });
+			});
+
+			var config = { attributes: true, subtree: true};
+			observer.observe($('body').get(0), config);
+		} else {
+			initSlideshow();
+		}
+
+	}
+
+	function initSlideshow() {
 		$slideshow.removeClass('loading');
 		if (options.autoplay) enable_autoplay();
 
@@ -147,6 +166,28 @@ function Slideshow(slideshow_options) {
 	}
 
 	function windowResizeHandler(e) {
+		if (typeof window.MutationObserver === 'function' && !$slideshow.is(":visible")) {
+			$(window).off('resize.slideshow');
+
+			var observer = new MutationObserver(function(mutations) {
+			  mutations.forEach(function(mutation) {
+				  console.log(mutation);
+				if ($slideshow.is(":visible")) {
+					observer.disconnect();
+					$(window).on('resize.slideshow', windowResizeHandler);
+					resizeSlideshow();
+				}
+			  });
+			});
+
+			var config = { attributes: true, subtree: true};
+			observer.observe($('body').get(0), config);
+		} else {
+			resizeSlideshow();
+		}
+	}
+
+	function resizeSlideshow() {
 		slideshow.width = $slideshow.find('.wrapper').width();
 		if (options.multiple_slides) {
 			if (options.visibleSlidesCount > 1) { //so it doesn't kick in thumbnail sample. bad code!

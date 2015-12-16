@@ -11,7 +11,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('button').on('click', function() {
-					$('.slideshow').toggle();
+					$('.demo').toggleClass('hidden');
 				});
 
 				var slideshow = new Slideshow({
@@ -20,8 +20,15 @@
 			});
 		</script>
 		<style type="text/css">
-			.slideshow {
+			.hidden {
 				display: none;
+			}
+
+			.demo__button {
+				font-size: 1em;
+				margin: 0 0 1em 0;
+				background: #ccc;
+				padding: 0.2em;
 			}
 
 			.slideshow .slide figure {
@@ -40,9 +47,11 @@
 		</style>
 	</head>
 	<body>
-		<h1>Responsive Slideshow with bullets</h1>
-		<button>show slideshow</button>
-		<div id="demo" class="slideshow">
+		<h1>Hidden Slideshow</h1>
+		<p>This example shows that slideshow can be instantiated even if it's hidden or inside a hidden element. In such cases, slideshow internally delays the initialization until it's displayed. Same technique is used to resize slideshow when it's hidden. Supported only in latest version of all browsers.</p>
+		<button class="demo__button">Toggle Display of Slideshow</button>
+		<div class="hidden demo">
+			<div id="demo" class="slideshow">
 			Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
 			<div class="wrapper">
 				<span class="next"><img src="../img/next4.png" alt="Next" /></span>
@@ -70,5 +79,6 @@
 			</div>
 			<div class="slideTabs"></div>
 		</div>
+	</div>
 	</body>
 </html>

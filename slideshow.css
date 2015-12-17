@@ -64,6 +64,6 @@
 }
 
 .slideshow .next.disabled,
-.slideshwo .prev.disabled {
+.slideshow .prev.disabled {
 	cursor: default;
 }

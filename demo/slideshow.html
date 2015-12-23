@@ -10,20 +10,12 @@
 		<script src="../slideshow.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('button').on('click', function() {
-					$('.slideshow').toggle();
-				});
-
 				var slideshow = new Slideshow({
 					id : 'demo'
 				});
 			});
 		</script>
 		<style type="text/css">
-			.slideshow {
-				display: none;
-			}
-
 			.slideshow .slide figure {
 				margin: 0;
 			}
@@ -41,7 +33,6 @@
 	</head>
 	<body>
 		<h1>Responsive Slideshow with bullets</h1>
-		<button>show slideshow</button>
 		<div id="demo" class="slideshow">
 			Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
 			<div class="wrapper">

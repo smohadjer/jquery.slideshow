@@ -25,8 +25,8 @@ function Slideshow(slideshow_options) {
 		slideTab_has_value: false,
 		transition_delay: 500,
 		preload_images: false,
-		loop: true,
-		variableHeight: true,
+		loop: false,
+		variableHeight: false,
 		variableWidth: true,
 		role : '',
 		loader_image : 'img/loader.gif',
@@ -87,7 +87,7 @@ function Slideshow(slideshow_options) {
 
 	function init() {
 		//check if css is loaded
-		if ($slides.css('position') !== 'absolute') {
+		if ($slides.css('position') !== 'relative') {
 			console.warn('slideshow styles are not loaded!');
 			return;
 		}
@@ -114,16 +114,23 @@ function Slideshow(slideshow_options) {
 		$slideshow.removeClass('loading');
 		if (options.autoplay) enable_autoplay();
 
-		if (options.loop) adjust_dom_for_looping();
+		if (options.loop) {
+			adjust_dom_for_looping();
+		}
+
 		setClickHandlersForSlideshowButtons();
 
 		slide.div = $slides.find('.slide');
 		slide.count = slide.div.length; //takes fake slides into account
 
-		if ($slideshow.has('.slideTabs')) create_slideTabs();
+		if ($slideshow.has('.slideTabs')) {
+			create_slideTabs();
+		}
+
 		add_drag_handlers();
 
 		$(window).on('resize.slideshow', windowResizeHandler);
+
 		windowResizeHandler();
 
 		slideshow.isInitialized = true;
@@ -195,6 +202,7 @@ function Slideshow(slideshow_options) {
 
 	function resizeSlideshow() {
 		slideshow.width = $slideshow.find('.wrapper').width();
+
 		if (options.multiple_slides) {
 			if (options.visibleSlidesCount > 1) { //so it doesn't kick in thumbnail sample. bad code!
 				slide.div.width(setSlideSize());
@@ -202,9 +210,13 @@ function Slideshow(slideshow_options) {
 		} else {
 			slide.div.width(slideshow.width);
 		}
+
 		positionSlides();
 		moveToSlide(options.loop ? slideNum : slideNum-1, 0);
-		if (options.variableHeight) setSlideHeight();
+
+		if (options.variableHeight) {
+			setSlideHeight();
+		}
 	}
 
 	function setSlideSize() {
@@ -287,17 +299,18 @@ function Slideshow(slideshow_options) {
 		//fixed and is calculated on the fly by javascript. After all slides are positioned we update width of div.slides to the correct value (even though there is no need for that).
 		//remove this hack later when you find a better solution to avoid wrapping of div.slide content.
 		$slides.width(50000);
+
 		for (var i = 0; i < slide.count; i++) {
-			slide.div.eq(i).css('left', left+'px');
-			left = left + slide.div.eq(i).outerWidth()+ marginRight;
+			//slide.div.eq(i).css('left', left+'px');
+			left = left + slide.div.eq(i).outerWidth() + marginRight;
 			//+ ( (i != slide.count-1) ? marginRight : 0 );
 			slides_width = left;
 		}
+
 		$slides.width(slides_width);
 	}
 
 	function moveToSlide(num, delay) {
-		//console.log(num, $slides.find('.slide').length);
 		var _delay = (delay === undefined) ? options.transition_delay : delay;
 		var currentSlide = slide.div.eq(num);
 		var slide_left = currentSlide.position().left;
@@ -329,7 +342,9 @@ function Slideshow(slideshow_options) {
 			.animate( { 'left' : - slide_left}, _delay, options.easing, function() {
 				if (options.variableHeight) {
 					//addImageErrorLoadHandlers();
-					if (tallest_slide_height == 0) setSlideHeight();
+					if (tallest_slide_height == 0) {
+						setSlideHeight();
+					}
 				}
 				if (options.callback) options.callback(slideshow);
 		}	);

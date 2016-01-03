@@ -1,5 +1,5 @@
 .slideshow.loading .wrapper {
-	background: url(demo/img/loader.gif) no-repeat center center;
+	/* background: url(demo/img/loader.gif) no-repeat center center; */
 	padding: 50px 0;
 }
 
@@ -19,13 +19,14 @@
 }
 
 .slideshow .slides {
-	position: absolute;
+	position: relative;
 	z-index: 10;
 }
 
 .slideshow .slide {
-	position: absolute;
-	-moz-box-sizing: border-box;
+	position: relative;
+	float: left;
+	box-sizing: border-box;
 }
 
 /***** slideshow tabs ******/
@@ -53,6 +54,7 @@
 	position: absolute;
 	z-index: 100;
 	padding: 0 3%;
+	top: calc(50% - 11px); /* next/prev buttons are 22px high by default */
 }
 
 .slideshow .prev {
@@ -66,4 +68,5 @@
 .slideshow .next.disabled,
 .slideshow .prev.disabled {
 	cursor: default;
+	opacity: 0.3;
 }

@@ -92,7 +92,10 @@ function Slideshow(slideshow_options) {
 			return;
 		}
 
-		if (typeof window.MutationObserver === 'function' && !$slideshow.is(":visible")) {
+		console.log(typeof window.MutationObserver);
+
+		if (window.MutationObserver && !$slideshow.is(":visible")) {
+			console.log('mo1');
 			var observer = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
 				if ($slideshow.is(":visible")) {
@@ -179,7 +182,7 @@ function Slideshow(slideshow_options) {
 	}
 
 	function windowResizeHandler(e) {
-		if (typeof window.MutationObserver === 'function' && !$slideshow.is(":visible")) {
+		if (window.MutationObserver && !$slideshow.is(":visible")) {
 			$(window).off('resize.slideshow');
 
 			var observer = new MutationObserver(function(mutations) {

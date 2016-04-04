@@ -1,9 +1,10 @@
-#jquery.slideshow 1.0.1
+#jquery.slideshow
 ##Responsive Touch-friendly jQuery Slideshow
 
 ##Examples
 <ul>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow with bullet tabs (default)</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow (default)</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow-json.html">Slideshow with data from json</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
@@ -65,6 +66,7 @@ $(document).ready(function(){
 	<li>Ability to display multiple slides</li>
 	<li>Options to enable/disable endless looping and/or autoplay</li>
 	<li>Supports custom easing via jquery easing plugin</li>
+	<li>Support for Json data</li>
 </ul>
 
 <h3>API</h3>
@@ -104,4 +106,6 @@ $(document).ready(function(){
 	<li><strong>variableWidth</strong>: false [true], if true, slideshow's width is calculated dynamically</li>
 
 	<li><strong>visibleSlidesCount</strong>: 1 [integer], if slideshow shows multiple slides simultanously, use this parameter to indicate how many slides are displayed at a time</li>
+	
+	<li><strong>json</strong>: URL, URL for json can also be set using data-json attribute on div.slideshow in markup</li>
 </ul>

@@ -1,8 +1,8 @@
-/**
-* jquery.slideshow.js v1.0.1 - a responsive touch-friendly Slideshow based on jQuery
-* https://github.com/SaeidMohadjer/jquery.slideshow
-* Copyright 2014 Saeid Mohadjer
-* Released under the MIT license - http://opensource.org/licenses/MIT
+/*
+* slideshow.js v1.1.0
+* https://github.com/smohadjer/jquery.slideshow
+* Copyright Saeid Mohadjer
+* Released under the MIT license
 */
 
 //https://gist.github.com/2375726
@@ -71,8 +71,37 @@ function Slideshow(slideshow_options) {
 		return slide.count;
 	};
 
-	//preload images
-	(function() {
+	//generate slideshow markup from json
+	var jsonUri = options.json || $slideshow.data('json');
+	if (jsonUri) {
+		generateMarkupFromJson(preloadImages);
+	} else {
+		preloadImages();
+	}
+
+	function generateMarkupFromJson(callback) {
+		var markup = '';
+
+		$.getJSON(jsonUri, function(data) {
+			$.each(data, function() {
+				var slide = '<div class="slide">' +
+						'<figure>' +
+							'<img src="' + this.url + '" />' +
+							'<figcaption>' + this.caption + '</figcaption>' +
+						'</figure>' +
+					'</div>';
+
+				markup += slide;
+			});
+
+			$slides.html(markup);
+			callback();
+		}).error(function(jqXHR, textStatus, errorThrown) {
+			console.warn(textStatus, errorThrown);
+		});
+	}
+
+	function preloadImages() {
 		$slideshow.addClass('loading');
 		if (options.preload_images && $slides.find('img').length) {
 			if (typeof jQuery.fn.imagesLoaded !== 'function') {
@@ -83,7 +112,7 @@ function Slideshow(slideshow_options) {
 		} else {
 			init();
 		}
-	})();
+	}
 
 	function init() {
 		//check if css is loaded
@@ -92,10 +121,7 @@ function Slideshow(slideshow_options) {
 			return;
 		}
 
-		console.log(typeof window.MutationObserver);
-
 		if (window.MutationObserver && !$slideshow.is(":visible")) {
-			console.log('mo1');
 			var observer = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
 				if ($slideshow.is(":visible")) {
@@ -187,7 +213,6 @@ function Slideshow(slideshow_options) {
 
 			var observer = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
-				  console.log(mutation);
 				if ($slideshow.is(":visible")) {
 					observer.disconnect();
 					$(window).on('resize.slideshow', windowResizeHandler);

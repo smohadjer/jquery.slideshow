@@ -1,0 +1,22 @@
+[
+	{
+		"url": "images/1.jpg",
+		"caption": "Caption for image 1 comes here..."
+	},
+	{
+		"url": "images/2.jpg",
+		"caption": "Caption for image 2 comes here..."
+	},
+	{
+		"url": "images/3.jpg",
+		"caption": "Caption for image 3 comes here..."
+	},
+	{
+		"url": "images/4.jpg",
+		"caption": "Caption for image 4 comes here..."
+	},
+	{
+		"url": "images/5.jpg",
+		"caption": "Caption for image 5 comes here..."
+	}
+]

@@ -84,7 +84,7 @@ $(document).ready(function(){
 	<li><strong>id</strong>: id of slideshow container (a required parameter)</li>
 
 	<li><strong>isInitialized</strong>: false [becomes true after slideshow has initialized]</li>
-
+	<li><strong>json</strong>: URL, URL for json can also be set using data-json attribute on div.slideshow in markup</li>
 	<li><strong>loader_image</strong>: "img/loader.gif", path to image to be used as loader</li>
 
 	<li><strong>loop</strong>: true [false]</li>
@@ -106,6 +106,4 @@ $(document).ready(function(){
 	<li><strong>variableWidth</strong>: false [true], if true, slideshow's width is calculated dynamically</li>
 
 	<li><strong>visibleSlidesCount</strong>: 1 [integer], if slideshow shows multiple slides simultanously, use this parameter to indicate how many slides are displayed at a time</li>
-	
-	<li><strong>json</strong>: URL, URL for json can also be set using data-json attribute on div.slideshow in markup</li>
 </ul>

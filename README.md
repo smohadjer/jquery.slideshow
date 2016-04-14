@@ -1,5 +1,4 @@
-#jquery.slideshow
-##Responsive Touch-friendly jQuery Slideshow
+#jQuery Slideshow
 
 ##Table of contents
 - [Examples](#examples)

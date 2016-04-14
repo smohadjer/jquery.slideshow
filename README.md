@@ -20,7 +20,7 @@
 </ul>
 
 <a name="usage" />
-##How to Use
+##Usage
 
 ###Step 1: Link required files
 

@@ -1,5 +1,4 @@
 .slideshow.loading .wrapper {
-	/* background: url(demo/img/loader.gif) no-repeat center center; */
 	padding: 50px 0;
 }
 
@@ -54,7 +53,7 @@
 	position: absolute;
 	z-index: 100;
 	padding: 0 3%;
-	top: calc(50% - 11px); /* next/prev buttons are 22px high by default */
+	top: calc(50% - 20px); /* next/prev buttons are 40px high by default */
 }
 
 .slideshow .prev {

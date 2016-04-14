@@ -38,12 +38,12 @@
 	padding: 10px;
 	margin: 0 5px;
 	line-height: 2em;
-	background: url(img/dot_grey_small.png) no-repeat center center;
+	background: url(../img/dot_grey_small.png) no-repeat center center;
 	opacity: 1;
 }
 
 .slideshow .slideTabs a.selected {
-	background-image: url(img/dot_blue_small.png);
+	background-image: url(../img/dot_blue_small.png);
 }
 
 /***** slideshow buttons *****/

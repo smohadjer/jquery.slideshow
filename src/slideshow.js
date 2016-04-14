@@ -45,15 +45,15 @@ function Slideshow(slideshow_options) {
 	var slideshow = this,
 		id = '#' + options.id,
 		$slideshow = $(id),
-		$prev = $slideshow.find('.prev'),
-		$next = $slideshow.find('.next'),
-		$slides = $slideshow.find('.slides'),
+		$prev, $next, $slides,
 		slideNum = options.startingSlideNumber,
 		slideTimer, autoplay_timeout,
 		previousSlidenum = 0,
 		slide = {},
 		slides_width = 0,
-		tallest_slide_height = 0;
+		tallest_slide_height = 0,
+		jsonUri = options.json || $slideshow.data('json');
+		templateUri = options.template || $slideshow.data('template');
 
 	//public properties and methods
 	slideshow.isInitialized = false;
@@ -72,7 +72,6 @@ function Slideshow(slideshow_options) {
 	};
 
 	//generate slideshow markup from json
-	var jsonUri = options.json || $slideshow.data('json');
 	if (jsonUri) {
 		generateMarkupFromJson(preloadImages);
 	} else {
@@ -80,29 +79,66 @@ function Slideshow(slideshow_options) {
 	}
 
 	function generateMarkupFromJson(callback) {
-		var markup = '';
+		var templateIsReady = false;
+		var jsonIsReady = false;
+		var context = {};
+		var template;
 
 		$.getJSON(jsonUri, function(data) {
-			$.each(data, function() {
-				var slide = '<div class="slide">' +
-						'<figure>' +
-							'<img src="' + this.url + '" />' +
-							'<figcaption>' + this.caption + '</figcaption>' +
-						'</figure>' +
-					'</div>';
+			jsonIsReady = true;
+			context.slides = data;
 
-				markup += slide;
-			});
-
-			$slides.html(markup);
-			callback();
+			if (templateIsReady) {
+				insertMarkup();
+			}
 		}).error(function(jqXHR, textStatus, errorThrown) {
 			console.warn(textStatus, errorThrown);
 		});
+
+		$.ajax({
+			url: templateUri,
+			dataType: 'html',
+			success: function(data) {
+				var templateIsReady = true;
+
+				template = Handlebars.compile(data);
+
+				if (jsonIsReady) {
+					insertMarkup();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.warn(textStatus, errorThrown);
+			}
+		});
+
+		function insertMarkup() {
+			var markup = template(context);
+			$slideshow.html(markup);
+			callback();
+		}
 	}
 
 	function preloadImages() {
+		//cache DOM references
+		$prev = $slideshow.find('.prev');
+		$next = $slideshow.find('.next');
+		$slides = $slideshow.find('.slides');
+
+		//check if markup exists
+		if ($slides.length === 0) {
+			console.warn('slideshow has no markup');
+			return;
+		}
+
+		//check if css is loaded
+		if ($slides.css('position') !== 'relative') {
+			console.warn('slideshow styles are not loaded!');
+			return;
+		}
+
 		$slideshow.addClass('loading');
+
 		if (options.preload_images && $slides.find('img').length) {
 			if (typeof jQuery.fn.imagesLoaded !== 'function') {
 				init();
@@ -115,12 +151,6 @@ function Slideshow(slideshow_options) {
 	}
 
 	function init() {
-		//check if css is loaded
-		if ($slides.css('position') !== 'relative') {
-			console.warn('slideshow styles are not loaded!');
-			return;
-		}
-
 		if (window.MutationObserver && !$slideshow.is(":visible")) {
 			var observer = new MutationObserver(function(mutations) {
 			  mutations.forEach(function(mutation) {
@@ -136,7 +166,6 @@ function Slideshow(slideshow_options) {
 		} else {
 			initSlideshow();
 		}
-
 	}
 
 	function initSlideshow() {

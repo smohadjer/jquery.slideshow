@@ -1,5 +1,5 @@
 /*
-* slideshow.js v1.1.0
+* slideshow.js v1.2.0
 * https://github.com/smohadjer/jquery.slideshow
 * Copyright Saeid Mohadjer
 * Released under the MIT license

@@ -8,8 +8,8 @@ module.exports = function(grunt) {
         preserveComments: 'some'
       },
       build: {
-        src: 'slideshow.js',
-        dest: 'slideshow.min.js'
+        src: 'src/slideshow.js',
+        dest: 'src/slideshow.min.js'
       }
     }
   });

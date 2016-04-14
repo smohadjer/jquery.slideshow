@@ -1,6 +1,12 @@
-#jquery.slideshow
-##Responsive Touch-friendly jQuery Slideshow
+#jQuery Slideshow
 
+##Table of contents
+- [Examples](#examples)
+- [Usage](#usage)
+- [Features](#features)
+- [API](#api)
+
+<a name="examples" />
 ##Examples
 <ul>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow (default)</a></li>
@@ -12,7 +18,8 @@
 
 </ul>
 
-##How to Use
+<a name="usage" />
+##Usage
 
 ###Step 1: Link required files
 
@@ -57,7 +64,8 @@ $(document).ready(function(){
 });
 ```
 
-<h3>Features</h3>
+<a name="features" />
+##Features
 <ul>
 	<li>Supports responsive layouts and touch devices</li>
 	<li>Supports any type of content (HTML, images, videos, etc.)</li>
@@ -69,7 +77,8 @@ $(document).ready(function(){
 	<li>Support for Json data</li>
 </ul>
 
-<h3>API</h3>
+<a name="api" />
+##API
 <ul>
 	<li><strong>autoplay</strong>: false [true]</li>
 

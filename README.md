@@ -2,10 +2,10 @@
 ##Responsive Touch-friendly jQuery Slideshow
 
 ##Table of contents
-[Examples](#examples)
-[Usage](#usage)
-[Features](#features)
-[API](#api)
+-[Examples](#examples)
+-[Usage](#usage)
+-[Features](#features)
+-[API](#api)
 
 <a name="examples" />
 ##Examples

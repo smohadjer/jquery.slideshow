@@ -1,0 +1,22 @@
+{
+  "name": "slideshow",
+  "description": "jQuery slideshow",
+  "main": "slideshow.js",
+  "dependencies": {
+      "jquery": "2.2.2"
+    },
+  "authors": [
+    "Saeid Mohadjer"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/smohadjer/jquery.slideshow",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

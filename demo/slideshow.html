@@ -14,6 +14,11 @@
 					id : 'demo',
 					loop: true
 				});
+
+				$('#btn1').on('click', function() {
+					console.log(slideshow.slideNumber());
+					slideshow.slideNumber(3);
+				});
 			});
 		</script>
 		<style type="text/css">
@@ -34,6 +39,7 @@
 	</head>
 	<body>
 		<h1>Responsive slideshow</h1>
+		<button id="btn1">Go to 3rd slide</button>
 		<div id="demo" class="slideshow">
 			Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
 			<div class="wrapper">
@@ -43,19 +49,31 @@
 					<div class="slide">
 						<figure>
 							<img src="images/1.jpg" />
-							<figcaption>lorem ipsum dolor ist</figcaption>
+							<figcaption>Slide 1 lorem ipsum dolor ist</figcaption>
 						</figure>
 					</div>
 					<div class="slide">
 						<figure>
 							<img src="images/2.jpg" />
-							<figcaption>Lorem Ipsum</figcaption>
+							<figcaption>Slide 2 Lorem Ipsum</figcaption>
 						</figure>
 					</div>
 					<div class="slide">
 						<figure>
 							<img src="images/3.jpg" />
-							<figcaption>Lorem ipsum dolor ist mutus nomen dedit cocis</figcaption>
+							<figcaption>Slide 3 Lorem ipsum dolor ist mutus nomen dedit cocis</figcaption>
+						</figure>
+					</div>
+					<div class="slide">
+						<figure>
+							<img src="images/4.jpg" />
+							<figcaption>Slide 4 lorem ipsum dolor ist</figcaption>
+						</figure>
+					</div>
+					<div class="slide">
+						<figure>
+							<img src="images/5.jpg" />
+							<figcaption>Slide 5 Lorem Ipsum</figcaption>
 						</figure>
 					</div>
 				</div>

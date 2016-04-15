@@ -2,8 +2,8 @@
 
 ##Table of contents
 - [Examples](#examples)
-- [Usage](#usage)
 - [Features](#features)
+- [Usage](#usage)
 - [API](#api)
 
 <a name="examples" />
@@ -17,6 +17,19 @@
 	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
 	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/hiddenSlideshow.html">Hidden slideshow (debug)</a></li>
 
+</ul>
+
+<a name="features" />
+##Features
+<ul>
+	<li>Supports responsive layouts and touch devices</li>
+	<li>Supports any type of content (HTML, images, videos, etc.)</li>
+	<li>Ability to easily modify look and feel via HTML and CSS changes</li>
+	<li>Navigational text tabs can be added in markup</li>
+	<li>Ability to display multiple slides</li>
+	<li>Options to enable/disable endless looping and/or autoplay</li>
+	<li>Supports custom easing via jquery easing plugin</li>
+	<li>Support for Json data</li>
 </ul>
 
 <a name="usage" />
@@ -64,19 +77,6 @@ $(document).ready(function(){
 	});
 });
 ```
-
-<a name="features" />
-##Features
-<ul>
-	<li>Supports responsive layouts and touch devices</li>
-	<li>Supports any type of content (HTML, images, videos, etc.)</li>
-	<li>Ability to easily modify look and feel via HTML and CSS changes</li>
-	<li>Navigational text tabs can be added in markup</li>
-	<li>Ability to display multiple slides</li>
-	<li>Options to enable/disable endless looping and/or autoplay</li>
-	<li>Supports custom easing via jquery easing plugin</li>
-	<li>Support for Json data</li>
-</ul>
 
 <a name="api" />
 ##API

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="jQuery Slideshow">
+		<title>jQuery Slideshow</title>
+		<link rel="stylesheet" href="../src/slideshow.css" />
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/imagesloaded/imagesloaded.js"></script>
+		<script src="../src/slideshow.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var slideshow = new Slideshow({
+					id : 'demo',
+					loop: true,
+					preload_images: true
+				});
+			});
+		</script>
+		<style type="text/css">
+			.slideshow .slide figure {
+				margin: 0;
+			}
+
+			.slideshow .slide figure img {
+				width: 100%;
+			}
+
+			@media (min-width: 600px) {
+				.slideshow {
+					width: 50%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Responsive slideshow</h1>
+		<div id="demo" class="slideshow">
+			Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
+			<div class="wrapper">
+				<img class="next" width="5%" src="../img/arrow_right.svg" alt="Next" />
+				<img class="prev" width="5%" src="../img/arrow_left.svg" alt="Previous" />
+				<div class="slides">
+					<div class="slide">
+						<figure>
+							<img src="images/1.jpg" />
+							<figcaption>lorem ipsum dolor ist</figcaption>
+						</figure>
+					</div>
+					<div class="slide">
+						<figure>
+							<img src="images/2.jpg" />
+							<figcaption>Lorem Ipsum</figcaption>
+						</figure>
+					</div>
+					<div class="slide">
+						<figure>
+							<img src="images/3.jpg" />
+							<figcaption>Lorem ipsum dolor ist mutus nomen dedit cocis</figcaption>
+						</figure>
+					</div>
+				</div>
+			</div>
+			<div class="slideTabs"></div>
+		</div>
+	</body>
+</html>

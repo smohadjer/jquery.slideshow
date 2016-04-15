@@ -28,8 +28,6 @@ function Slideshow(slideshow_options) {
 		loop: false,
 		variableHeight: false,
 		variableWidth: true,
-		role : '',
-		loader_image : 'img/loader.gif',
 		multiple_slides: false,
 		slide_margin_right : 0, //percent only used when multiple slides are displayed and slideshow has variable width
 		align_buttons: function() {
@@ -144,7 +142,10 @@ function Slideshow(slideshow_options) {
 				init();
 				return;
 			}
-			$slides.imagesLoaded(init);
+			$slides.imagesLoaded(function() {
+				console.log('loaded');
+				init()
+			});
 		} else {
 			init();
 		}
@@ -451,12 +452,6 @@ function Slideshow(slideshow_options) {
 		$(id + ' .wrapper').css('height', slideHeight());
 
 		options.align_buttons();
-
-		//we trigger resize because if slideshow has caused browser scrollbar
-		//to appear when slideshow's parent has no fixed width then slides will
-		//be almost 17px (width of scrollbar) wider than parent element causing
-		//layout issues...
-		//if (options.variableWidth) update_width();
 	}
 
 	function slideHeight() {

@@ -9,8 +9,9 @@
 <a name="examples" />
 ##Examples
 <ul>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow (default)</a></li>
-	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow-json.html">Slideshow with data from json</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow.html">Slideshow (minimal)</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_json.html">Slideshow with data from json</a></li>
+	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_preload.html">Slideshow with preloading of image</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
 	<li><a href="http://repos.saeidmohadjer.com/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>

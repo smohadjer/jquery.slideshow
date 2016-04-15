@@ -1,5 +1,6 @@
 .slideshow.loading .wrapper {
 	padding: 50px 0;
+	background: url(../img/loader.gif) no-repeat center center;
 }
 
 .slideshow.loading .slides {

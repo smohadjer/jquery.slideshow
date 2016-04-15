@@ -80,6 +80,7 @@ $(document).ready(function(){
 
 <a name="api" />
 ##API
+###Options
 <ul>
 	<li><strong>autoplay</strong>: false [true]</li>
 
@@ -116,4 +117,9 @@ $(document).ready(function(){
 	<li><strong>variableWidth</strong>: false [true], if true, slideshow's width is calculated dynamically</li>
 
 	<li><strong>visibleSlidesCount</strong>: 1 [integer], if slideshow shows multiple slides simultanously, use this parameter to indicate how many slides are displayed at a time</li>
+</ul>
+
+###Methods
+<ul>
+	<li><strong>slideNumber(num)</strong>: If this method is called without argument it returns current slide number, otherwise it moves to slide corresponding to argument.
 </ul>

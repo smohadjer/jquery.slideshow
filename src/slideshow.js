@@ -143,7 +143,6 @@ function Slideshow(slideshow_options) {
 				return;
 			}
 			$slides.imagesLoaded(function() {
-				console.log('loaded');
 				init()
 			});
 		} else {

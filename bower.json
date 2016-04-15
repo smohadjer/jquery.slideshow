@@ -5,7 +5,8 @@
   "dependencies": {
     "jquery": "2.2.2",
     "handlebars": "4.0.5",
-    "imagesloaded": "^4.1.0"
+    "imagesloaded": "^4.1.0",
+	"jquery.easing": "gdsmith/jquery.easing"
   },
   "authors": [
     "Saeid Mohadjer"

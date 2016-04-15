@@ -1,15 +1,11 @@
-.slideshow.loading .wrapper {
+.slideshow.loading {
 	padding: 50px 0;
 	background: url(../img/loader.gif) no-repeat center center;
+	background-color: #eee;	
 }
 
-.slideshow.loading .slides {
+.slideshow.loading > * {
 	display: none;
-}
-
-/* do not show slides during loading */
-.slideshow.loading .slide {
-	visibility: hidden;
 }
 
 .slideshow .wrapper {

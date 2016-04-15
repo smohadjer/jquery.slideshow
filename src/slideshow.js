@@ -54,17 +54,19 @@ function Slideshow(slideshow_options) {
 		templateUri = options.template || $slideshow.data('template');
 
 	//public properties and methods
-	slideshow.isInitialized = false;
+	this.isInitialized = false;
 	this.width = 0;
+
 	this.slideNumber = function(num) {
 		if (num) {
-			slideNum = parseInt(num);
-			update();
-			moveToSlide(slideNum-1);
+			slideNum = num;
+			updateUI();
+			moveToSlide(options.loop ? slideNum : slideNum-1);
 		} else {
 			return slideNum;
 		}
 	};
+
 	this.getSlideCount = function() {
 		return slide.count;
 	};
@@ -486,17 +488,6 @@ function Slideshow(slideshow_options) {
 				this.src = "images/image_not_found.jpg";
 			}
 		}
-	}
-
-	function update() {
-		slide.div = $(id + ' .slide');
-		slide.count = slide.div.length;
-		positionSlides();
-		if ( (slideNum > slide.count) && (slide.count != 0) ) {
-			slideNum = slide.count;
-			moveToSlide(slideNum);
-		}
-		updateUI();
 	}
 
 	function updateUI() {

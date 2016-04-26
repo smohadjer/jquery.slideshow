@@ -15,7 +15,7 @@
 	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
 	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
 	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/hiddenSlideshow.html">Hidden slideshow (debug)</a></li>
+	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_hidden.html">Hidden slideshow (debug)</a></li>
 
 </ul>
 

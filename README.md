@@ -1,7 +1,7 @@
 # jQuery Slideshow
 
 ## Table of contents
-* Examples](#examples)
+* [Examples](#examples)
 * [Features](#features)
 * [Usage](#usage)
 * [API](#api)

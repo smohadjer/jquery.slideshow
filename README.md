@@ -1,42 +1,33 @@
-#jQuery Slideshow
+# jQuery Slideshow
 
-##Table of contents
-- [Examples](#examples)
-- [Features](#features)
-- [Usage](#usage)
-- [API](#api)
+## Table of contents
+* Examples](#examples)
+* [Features](#features)
+* [Usage](#usage)
+* [API](#api)
 
-<a name="examples" />
-##Examples
-<ul>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow.html">Slideshow (minimal)</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_json.html">Slideshow with data from json</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_preload.html">Slideshow with preloading of image</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a></li>
-	<li><a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_hidden.html">Hidden slideshow (debug)</a></li>
+## <a name="examples" />Examples</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow.html">Slideshow (minimal)</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_json.html">Slideshow with data from json</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_preload.html">Slideshow with preloading of image</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_tabs_text.html">Slideshow with text tabs</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_thumbs.html">Slideshow as sliding thumb nails</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_multiple_responsive.html">with multiple visible slides</a>
+* <a href="http://smohadjer.github.io/jquery.slideshow/demo/slideshow_hidden.html">Hidden slideshow (debug)</a>
 
-</ul>
 
-<a name="features" />
-##Features
-<ul>
-	<li>Supports responsive layouts and touch devices</li>
-	<li>Supports any type of content (HTML, images, videos, etc.)</li>
-	<li>Ability to easily modify look and feel via HTML and CSS changes</li>
-	<li>Navigational text tabs can be added in markup</li>
-	<li>Ability to display multiple slides</li>
-	<li>Options to enable/disable endless looping and/or autoplay</li>
-	<li>Supports custom easing via jquery easing plugin</li>
-	<li>Support for Json data</li>
-</ul>
+## <a name="features" />Features</a>
+* Supports responsive layouts and touch devices
+* Supports any type of content (HTML, images, videos, etc.)
+* Ability to easily modify look and feel via HTML and CSS changes
+* Navigational text tabs can be added in markup
+* Ability to display multiple slides
+* Options to enable/disable endless looping and/or autoplay
+* Supports custom easing via jquery easing plugin
+* Support for Json data
 
-<a name="usage" />
-##Usage
-
-###Step 1: Link required files
-
+## <a name="usage" />Usage</a>
+### Step 1: Link required files
 ```html
 <!-- jQuery library from CDN  -->
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -45,8 +36,7 @@
 <script src="js/slideshow.js"></script>
 ```
 
-###Step 2: Create HTML markup
-
+### Step 2: Create HTML markup
 ```html
 <div id="mySlideshow" class="slideshow">
 	<div class="wrapper">
@@ -68,8 +58,7 @@
 </div>
 ```
 
-###Step 3: initialize the slideshow
-
+### Step 3: initialize the slideshow
 ```javascript
 $(document).ready(function(){
 	var slideshow = new Slideshow({
@@ -78,48 +67,27 @@ $(document).ready(function(){
 });
 ```
 
-<a name="api" />
-##API
-###Options
-<ul>
-	<li><strong>autoplay</strong>: false [true]</li>
+## <a name="api" />API</a>
+### Options
+- **autoplay: false [true]**
+- **autoplay_start_delay: 0** time in miliseconds that it takes for autoplay to start
+- **callback<: function() {}** a function that runs when slide buttons are clicked.
+- **displayTime: ms** is used only when autoplay is set to true and indicates the amount of time a slide stays on screen
+- **easing: "swing" ["easeOutCubic", "easeOutQuart", "easeOutQuad", ...]**, using jquery.easing.1.3.js
+- **id: id of slideshow container** (a required parameter)
+- **isInitialized: false** becomes true after slideshow has initialized
+- **json: URL** URL for json can also be set using data-json attribute on div.slideshow in markup
+- **loader_image: "img/loader.gif"** path to image to be used as loader
+- **loop: true [false]**
+- **multiple_slides: true [false]** set to true when more than one slide should be visible
+- **preload_images: false [true]** Set this to true if you have not specified a width for div.slide in CSS. This parameter relies on jquery.imagesloaded.js plugin.
+- **startingSlideId: null** id of slide that should be used as starting slide
+- **startingSlideNumber: 1**, number of slide that should be used as starting slide
+- **slide_margin_right: 0 [integer]** indicates the amount of right margin in percentage relative to width of div.wrapper when multiple slides are displayed and slideshow has variable width. This helps javascript to calculate the width of each slide.
+- **transition_delay: 500** is in miliseconds and is the amount of time it takes for a slide to move to view, so the higher the value, the slower the animation would be.
+- **variableHeight: false [true]**, if true, slideshow's height is calculated dynamically</li>
+- **variableWidth: false [true]**, if true, slideshow's width is calculated dynamically</li>
+- **visibleSlidesCount: 1 [integer]**, if slideshow shows multiple slides simultanously, use this parameter to indicate how many slides are displayed at a time
 
-	<li><strong>autoplay_start_delay</strong>: 0, time in miliseconds that it takes for autoplay to start</li>
-
-	<li><strong>callback</strong>: a function that runs when slide buttons are clicked.</li>
-
-	<li><strong>displayTime</strong>: 3000, is used only when autoplay is set to true and indicates the amount of time a slide stays on screen</li>
-
-	<li><strong>easing</strong>: "swing" ["easeOutCubic", "easeOutQuart", "easeOutQuad", ...], using jquery.easing.1.3.js</li>
-
-	<li><strong>id</strong>: id of slideshow container (a required parameter)</li>
-
-	<li><strong>isInitialized</strong>: false [becomes true after slideshow has initialized]</li>
-	<li><strong>json</strong>: URL, URL for json can also be set using data-json attribute on div.slideshow in markup</li>
-	<li><strong>loader_image</strong>: "img/loader.gif", path to image to be used as loader</li>
-
-	<li><strong>loop</strong>: true [false]</li>
-
-	<li><strong>multiple_slides</strong>: Set to true when more than one slide should be visible. Default: false</li>
-
-	<li><strong>preload_images</strong>: false [true], Set this to true if you have not specified a width for div.slide in CSS. This parameter relies on jquery.imagesloaded.js plugin.</li>
-
-	<li><strong>startingSlideId</strong>: null, id of slide that should be used as starting slide</li>
-
-	<li><strong>startingSlideNumber</strong>: 1, number of slide that should be used as starting slide</li>
-
-	<li><strong>slide_margin_right</strong>: 0 [integer], indicates the amount of right margin in percentage relative to width of div.wrapper when multiple slides are displayed and slideshow has variable width. This helps javascript to calculate the width of each slide.</li>
-
-	<li><strong>transition_delay</strong>: 500, is in miliseconds and is the amount of time it takes for a slide to move to view, so the higher the value, the slower the animation would be.</li>
-
-	<li><strong>variableHeight</strong>: false [true], if true, slideshow's height is calculated dynamically</li>
-
-	<li><strong>variableWidth</strong>: false [true], if true, slideshow's width is calculated dynamically</li>
-
-	<li><strong>visibleSlidesCount</strong>: 1 [integer], if slideshow shows multiple slides simultanously, use this parameter to indicate how many slides are displayed at a time</li>
-</ul>
-
-###Methods
-<ul>
-	<li><strong>slideNumber(num)</strong>: If this method is called without argument it returns current slide number, otherwise it moves to slide corresponding to argument.
-</ul>
+### Methods
+**slideNumber(num)**: If this method is called without argument it returns current slide number, otherwise it moves to slide corresponding to argument.

@@ -86,7 +86,6 @@ $(document).ready(function(){
 - **slide_margin_right: 0 [integer]** indicates the amount of right margin in percentage relative to width of div.wrapper when multiple slides are displayed and slideshow has variable width. This helps javascript to calculate the width of each slide.
 - **transition_delay: 500** is in miliseconds and is the amount of time it takes for a slide to move to view, so the higher the value, the slower the animation would be.
 - **variableHeight: false [true]**, if true, slideshow's height is calculated dynamically</li>
-- **variableWidth: false [true]**, if true, slideshow's width is calculated dynamically</li>
 - **visibleSlidesCount: 1 [integer]**, if slideshow shows multiple slides simultanously, use this parameter to indicate how many slides are displayed at a time
 
 ### Methods

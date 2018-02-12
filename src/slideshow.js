@@ -1,5 +1,6 @@
 /*
-* slideshow.js v1.2.0
+* slideshow.js v1.2.1
+* last updated: 12.02.2018
 * https://github.com/smohadjer/jquery.slideshow
 * Copyright Saeid Mohadjer
 * Released under the MIT license
@@ -27,7 +28,6 @@ function Slideshow(slideshow_options) {
 		preload_images: false,
 		loop: false,
 		variableHeight: false,
-		variableWidth: true,
 		multiple_slides: false,
 		slide_margin_right : 0, //percent only used when multiple slides are displayed and slideshow has variable width
 		align_buttons: function() {
@@ -260,7 +260,15 @@ function Slideshow(slideshow_options) {
 	}
 
 	function resizeSlideshow() {
-		slideshow.width = $slideshow.find('.wrapper').width();
+		var $wrapper = $slideshow.find('> .wrapper');
+
+		//before getting slideshow's width, we set height of wrapper to 0 because
+		//as long as slideshow is not properly initizalied images wrap below each
+		//other and this can cause browser show scrollbar during width calculationg
+		//hence giving us a wrong width for slideshow when its width is set in css to a percentage.
+		$wrapper.addClass('calculating');
+		slideshow.width = $wrapper.width();
+		$wrapper.removeClass('calculating');
 
 		if (options.multiple_slides) {
 			if (options.visibleSlidesCount > 1) { //so it doesn't kick in thumbnail sample. bad code!

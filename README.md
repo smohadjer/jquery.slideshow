@@ -24,7 +24,7 @@
 * Ability to display multiple slides
 * Options to enable/disable endless looping and/or autoplay
 * Supports custom easing via jquery easing plugin
-* Support for Json data
+* Support for json
 
 ## <a name="usage" />Usage</a>
 ### Step 1: Link required files
@@ -71,7 +71,7 @@ $(document).ready(function(){
 ### Options
 - **autoplay: false [true]**
 - **autoplay_start_delay: 0** time in miliseconds that it takes for autoplay to start
-- **callback<: function() {}** a function that runs when slide buttons are clicked.
+- **callback: function() {}** a function that runs when slide buttons are clicked.
 - **displayTime: ms** is used only when autoplay is set to true and indicates the amount of time a slide stays on screen
 - **easing: "swing" ["easeOutCubic", "easeOutQuart", "easeOutQuad", ...]**, using jquery.easing.1.3.js
 - **id: id of slideshow container** (a required parameter)

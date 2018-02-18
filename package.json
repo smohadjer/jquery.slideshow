@@ -4,9 +4,7 @@
 	"description": "jQuery Slideshow",
 	"main": "./dist/js/slideshow.js",
 	"style": "./dist/css/slideshow.css",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"scripts": {},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/smohadjer/jquery.slideshow.git"
@@ -14,13 +12,14 @@
 	"author": "",
 	"license": "MIT",
 	"bugs": {
-	"url": "https://github.com/smohadjer/jquery.slideshow/issues"
+		"url": "https://github.com/smohadjer/jquery.slideshow/issues"
 	},
 	"homepage": "https://github.com/smohadjer/jquery.slideshow#readme",
 	"dependencies": {
-		"jquery": "^2.2.2",
+		"jquery": "^3.0.0",
 		"handlebars": "^4.0.5",
 		"imagesloaded": "^4.1.0",
 		"jquery.easing": "^1.4.1"
-	}
+	},
+	"devDependencies": {}
 }

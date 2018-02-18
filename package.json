@@ -1,0 +1,20 @@
+{
+  "name": "jquery.slideshow",
+  "version": "1.2.1",
+  "description": "jQuery Slideshow",
+  "main": "./dist/js/slideshow.js",
+  "style": "./dist/css/slideshow.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smohadjer/jquery.slideshow.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smohadjer/jquery.slideshow/issues"
+  },
+  "homepage": "https://github.com/smohadjer/jquery.slideshow#readme"
+}

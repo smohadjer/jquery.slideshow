@@ -17,7 +17,8 @@
   "private": true,
   "ignore": [
     "**/.*",
-	"*.*",
+	"*.md",
+	"*.txt",
     "node_modules",
     "bower_components",
     "demo",

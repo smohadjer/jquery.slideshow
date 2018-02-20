@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="jQuery Slideshow">
 		<title>jQuery Slideshow</title>
-		<link rel="stylesheet" href="../dist/css/slideshow.css" />
-		<script src="externals/jquery/dist/jquery.min.js"></script>
-		<script src="../dist/js/slideshow.js"></script>
+		<link rel="stylesheet" href="../dist/slideshow.css" />
+		<script src="vendor/jquery/dist/jquery.min.js"></script>
+		<script src="../dist/slideshow.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				var slideshow = new Slideshow({
@@ -30,14 +30,20 @@
 					width: 50%;
 				}
 			}
+
+			.slideshow .prev,
+			.slideshow .next {
+				padding: 5px 10px;
+				margin: 0 5px 10px 0;
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Responsive slideshow (minimal demo)</h1>
 		<div id="demo" class="slideshow">
 			<div class="wrapper">
-				<img class="next" width="5%" src="../dist/img/arrow_right.svg" alt="Next" />
-				<img class="prev" width="5%" src="../dist/img/arrow_left.svg" alt="Previous" />
+				<button class="prev">Previous Slide</button>
+				<button class="next">Next Slide</button>
 				<div class="slides">
 					<div class="slide">
 						<figure>

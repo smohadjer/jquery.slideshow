@@ -16,10 +16,29 @@
 	},
 	"homepage": "https://github.com/smohadjer/jquery.slideshow#readme",
 	"dependencies": {
-		"jquery": "^3.0.0",
+		"jquery": "^2.2.2",
 		"handlebars": "^4.0.5",
 		"imagesloaded": "^4.1.0",
 		"jquery.easing": "^1.4.1"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"del": "2.2.0",
+		"gulp": "^3.9.1",
+		"gulp-concat": "2.6.0",
+		"gulp-copy": "0.0.2",
+		"gulp-declare": "0.3.0",
+		"gulp-handlebars": "^5.0.0",
+		"gulp-if": "^2.0.0",
+		"gulp-jshint": "^2.0.0",
+		"gulp-npm-dist": "^0.1.6",
+		"gulp-sass": "^3.1.0",
+		"gulp-sourcemaps": "^2.6.3",
+		"gulp-uglify": "^3.0.0",
+		"gulp-wrap": "0.11.0",
+		"handlebars": "4.0.5",
+		"jshint": "^2.9.2",
+		"jshint-stylish": "2.1.0",
+		"require-dir": "^0.3.2",
+		"run-sequence": "^1.1.5"
+	}
 }

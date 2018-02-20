@@ -5,11 +5,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="jQuery Slideshow">
 		<title>jQuery Slideshow</title>
-		<link rel="stylesheet" href="../dist/css/slideshow.css" />
-		<script src="externals/jquery/dist/jquery.min.js"></script>
-		<script src="externals/imagesloaded/imagesloaded.pkgd.min.js"></script>
-		<script src="externals/jquery.easing/js/jquery.easing.min.js"></script>
-		<script src="../dist/js/slideshow.js"></script>
+		<link rel="stylesheet" href="../dist/slideshow.css" />
+		<script src="vendor/jquery/dist/jquery.min.js"></script>
+		<script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+		<script src="vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="../dist/slideshow.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				var slideshow = new Slideshow({
@@ -22,6 +22,16 @@
 			});
 		</script>
 		<style type="text/css">
+			.slideshow.loading {
+				padding: 50px 0;
+				background: url(img/loader.gif) no-repeat center center;
+				background-color: #eee;
+			}
+
+			.slideshow.loading > * {
+				display: none;
+			}
+
 			.slideshow .slide figure {
 				margin: 0;
 			}
@@ -35,6 +45,48 @@
 					width: 50%;
 				}
 			}
+
+			/***** slideshow tabs ******/
+			.slideshow .slideTabs {
+				text-align: center;
+			}
+
+			.slideshow .slideTabs a {
+				padding: 10px;
+				margin: 0 5px;
+				line-height: 2em;
+				background: url(img/dot_grey_small.png) no-repeat center center;
+				opacity: 1;
+			}
+
+			.slideshow .slideTabs a.selected {
+				background-image: url(img/dot_blue_small.png);
+			}
+
+			/***** slideshow buttons *****/
+			.slideshow .prev,
+			.slideshow .next {
+				text-decoration: underline;
+				cursor: pointer;
+				position: absolute;
+				z-index: 100;
+				padding: 0 3%;
+				top: calc(50% - 20px); /* next/prev buttons are 40px high by default */
+			}
+
+			.slideshow .prev {
+				left: 0;
+			}
+
+			.slideshow .next {
+				right: 0;
+			}
+
+			.slideshow .next.disabled,
+			.slideshow .prev.disabled {
+				cursor: default;
+				opacity: 0.3;
+			}
 		</style>
 	</head>
 	<body>
@@ -42,8 +94,8 @@
 		<div id="demo" class="slideshow">
 			Slide <span class="slideNumber"></span> of <span class="slidesCount"></span>
 			<div class="wrapper">
-				<img class="next" width="5%" src="../dist/img/arrow_right.svg" alt="Next" />
-				<img class="prev" width="5%" src="../dist/img/arrow_left.svg" alt="Previous" />
+				<img class="next" width="5%" src="img/arrow_right.svg" alt="Next" />
+				<img class="prev" width="5%" src="img/arrow_left.svg" alt="Previous" />
 				<div class="slides">
 					<div class="slide">
 						<figure>

@@ -5,10 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="A minimal jQuery slideshow">
 		<title>jquery.slideshow demo</title>
-		<link rel="stylesheet" href="../dist/css/slideshow.css" />
-		<script src="externals/jquery/dist/jquery.min.js"></script>
-		<script src="externals/imagesloaded/imagesloaded.pkgd.min.js"></script>
-		<script src="../dist/js/slideshow.js"></script>
+		<link rel="stylesheet" href="../dist/slideshow.css" />
+		<script src="vendor/jquery/dist/jquery.min.js"></script>
+		<script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+		<script src="../dist/slideshow.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				slideshow = new Slideshow({
@@ -29,6 +29,16 @@
 			});
 		</script>
 		<style type="text/css">
+			.slideshow.loading {
+				padding: 50px 0;
+				background: url(img/loader.gif) no-repeat center center;
+				background-color: #eee;
+			}
+
+			.slideshow.loading > * {
+				display: none;
+			}
+
 			.slideshow {
 				position: relative; /* needed to vertically center align slide buttons */
 			}
@@ -39,22 +49,57 @@
 			.slideshow .slide img {
 				width: 100%;
 			}
+
+			/***** slideshow buttons *****/
 			.slideshow .prev,
 			.slideshow .next {
+				text-decoration: underline;
+				cursor: pointer;
+				position: absolute;
+				z-index: 100;
+				padding: 0 3%;
+				top: calc(50% - 20px); /* next/prev buttons are 40px high by default */
 				top: 0;
 				width: 2.5%;
 				padding: 0;
 			}
 
-			.slideshow .disabled {
+			.slideshow .prev {
+				left: 0;
+			}
+
+			.slideshow .next {
+				right: 0;
+			}
+
+			.slideshow .next.disabled,
+			.slideshow .prev.disabled {
+				cursor: default;
 				opacity: 0.3;
+			}
+
+			/***** slideshow tabs ******/
+			.slideshow .slideTabs {
+				text-align: center;
+			}
+
+			.slideshow .slideTabs a {
+				padding: 10px;
+				margin: 0 5px;
+				line-height: 2em;
+				background: url(img/dot_grey_small.png) no-repeat center center;
+				opacity: 1;
+			}
+
+			.slideshow .slideTabs a.selected {
+				background-image: url(img/dot_blue_small.png);
 			}
 		</style>
 	</head>
 	<body>
 		<h1>Responsive slideshow with multiple visible slides</h1>
 		<div id="slideshow_thumbs" class="slideshow">
-			<img class="prev" width="5%" src="../dist/img/arrow_left.svg" alt="Previous" />
+			<img class="prev" width="5%" src="img/arrow_left.svg" alt="Previous" />
 			<div class="wrapper">
 				<div class="slides">
 					<div class="slide">
@@ -79,7 +124,7 @@
 					</div>
 				</div>
 			</div>
-			<img class="next" width="5%" src="../dist/img/arrow_right.svg" alt="Next" />
+			<img class="next" width="5%" src="img/arrow_right.svg" alt="Next" />
 			<div class="slideTabs"></div>
 		</div>
 	</body>

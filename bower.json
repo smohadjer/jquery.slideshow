@@ -6,7 +6,7 @@
     "jquery": "2.2.2",
     "handlebars": "4.0.5",
     "imagesloaded": "^4.1.0",
-	"jquery.easing": "^1.3.0"
+	"jquery.easing.gsgd": "^1.4.1"
   },
   "authors": [
     "Saeid Mohadjer"
@@ -21,6 +21,7 @@
     "node_modules",
     "bower_components",
     "demo",
+	"gulp-tasks",
     "src"
   ]
 }

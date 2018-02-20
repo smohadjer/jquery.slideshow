@@ -1,3 +1,14 @@
 node_modules
 .DS_Store
-demo/vendor
+
+demo/vendor/handlebars/**/*
+!demo/vendor/handlebars/dist/handlebars.min.js
+
+demo/vendor/imagesloaded/**/*
+!demo/vendor/imagesloaded/imagesloaded.pkgd.min.js
+
+demo/vendor/jquery/**/*
+!demo/vendor/jquery/dist/jquery.min.js
+
+demo/vendor/jquery.easing/**/*
+!demo/vendor/jquery.easing/jquery.easing.min.js

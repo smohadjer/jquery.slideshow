@@ -3,6 +3,7 @@
 ## Table of contents
 * [Examples](#examples)
 * [Features](#features)
+* [Install](#install)
 * [Usage](#usage)
 * [API](#api)
 
@@ -25,6 +26,12 @@
 * Options to enable/disable endless looping and/or autoplay
 * Supports custom easing via jquery easing plugin
 * Support for json
+
+## <a name="install" />Install</a>
+You can install slideshow in your project using NPM and github endpoint, for example the following command will install latest code from master branch into your project's node_modules folder. You can replace #master with a #version to install a particular version.
+```
+npm install https://github.com/smohadjer/jquery.slideshow.git#master
+```
 
 ## <a name="usage" />Usage</a>
 ### Step 1: Link required files

@@ -16,7 +16,7 @@
 	},
 	"homepage": "https://github.com/smohadjer/jquery.slideshow#readme",
 	"files": [
-		'./dist'
+		"./dist"
 	],
 	"dependencies": {
 		"jquery": "^2.2.2",

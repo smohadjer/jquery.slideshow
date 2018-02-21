@@ -28,10 +28,11 @@
 * Support for json
 
 ## <a name="install" />Install</a>
-You can install slideshow in your project using NPM and github endpoint, for example the following command will install latest code from master branch into your project's node_modules folder. You can replace #master with a #version to install a particular version.
+You can install slideshow in your project using npm and the github endpoint:
 ```
-npm install https://github.com/smohadjer/jquery.slideshow.git#master
+npm install https://github.com/smohadjer/jquery.slideshow.git
 ```
+This will install latest released version of slideshow in the node_modules directory. Within node_modules/jquery.slideshow/dist/ you will find an slideshow.js and slideshow.css which are required for using jquery.slideshow in your project.
 
 ## <a name="usage" />Usage</a>
 ### Step 1: Link required files

@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 gulp.task('clean', function () {
 	return del([
 		'./dist/**/*',
+		'./demo/vendor/**/*',
 		'./.tmp/**/*'
 	]);
 });
